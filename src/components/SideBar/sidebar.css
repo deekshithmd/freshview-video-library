@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    border-right: 1px solid var(--primary-hover);
+    border-right: 1px solid var(--primary-color);
 }
 
 .inline-item{
@@ -15,7 +15,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 2rem 4rem;
+    padding: 2rem 5rem;
 }
 
 .inline-item:hover{

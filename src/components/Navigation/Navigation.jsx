@@ -1,3 +1,4 @@
+import "./navigation.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
@@ -17,10 +18,12 @@ export const Navigation = () => {
       <section className="brand logo">
         <Link to="/">
           <img
-            src="https://i.postimg.cc/vHTMKDBm/freshview-logo.png"
+            src="https://i.postimg.cc/fR92NM3L/fresh.png"
+            className="fresh-logo"
             alt="logo"
           />
         </Link>
+        <span className="brand-text">FreshView</span>
       </section>
       <section className="search-item">
         <div className="input search-field outlined ">

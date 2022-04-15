@@ -44,8 +44,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    background-color: var(--background-black);
+    color: var(--secondary-white-text-color);
+    background-color: var(--light-black-background);
     opacity: 0.8;
     padding: 2rem;
     border-radius: 10px;
