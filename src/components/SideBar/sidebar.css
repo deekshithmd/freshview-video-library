@@ -1,0 +1,28 @@
+
+.sidebar-container{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-right: 1px solid var(--primary-hover);
+}
+
+.inline-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 4rem;
+}
+
+.inline-item:hover{
+    cursor: pointer;
+    background-color: var(--primary-hover);
+}
+
+.sidebar-icon{
+    font-size: 2rem;
+}
