@@ -1,5 +1,4 @@
-
-.sidebar-container{
+.sidebar-container {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -9,27 +8,32 @@
     align-items: flex-start;
 }
 
-.inline-item{
+.inline-item {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 2rem 5rem;
+    padding: 2rem;
 }
 
-.inline-item:hover{
+.inline-item:hover {
     cursor: pointer;
-    border-radius: 10px;;
+    border-radius: 10px;
+    ;
     color: var(--primary-color);
 }
 
-.sidebar-icon{
+.sidebar-icon {
     font-size: 2rem;
 }
 
 @media screen and(max-width:480px) {
-    .sidebar-container{
+    .sidebar-container {
         width: 100%;
         height: 100%;
+    }
+
+    .page-name {
+        display: none
     }
 }

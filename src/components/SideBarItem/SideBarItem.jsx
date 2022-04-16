@@ -1,3 +1,4 @@
+import "../SideBar/sidebar.css"
 import { NavLink } from "react-router-dom"
 
 export const SideBarItem=({link})=>{
@@ -14,7 +15,7 @@ export const SideBarItem=({link})=>{
           className="inline-item link-style-none text-md text-bold"
         >
           <i className={`${link.icon} sidebar-icon margin-r`}></i>
-          {link.page}
+          <span className="page-name">{link.page}</span>
         </NavLink>
     )
 }

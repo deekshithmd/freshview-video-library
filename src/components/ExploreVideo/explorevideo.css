@@ -1,4 +1,3 @@
-
 .grid-container {
     display: grid;
     min-height: 70vh;
@@ -69,20 +68,20 @@
     line-height: 2;
 }
 
-.option-show{
+.option-show {
     position: absolute;
     top: 2.5rem;
     right: 2.5rem;
 }
 
-.video-options{
+.video-options {
     display: flex;
     flex-direction: column;
     justify-content: center;
     border: 1px solid var(--primary-color);
 }
 
-.option-item{
+.option-item {
     position: relative;
     padding: 1rem;
     background-color: aqua;
@@ -91,35 +90,36 @@
     z-index: 1;
 }
 
-.option-item:hover{
+.option-item:hover {
     background-color: var(--primary-color);
     cursor: pointer;
 }
 
-.add-playlist{
+.add-playlist {
     position: absolute;
     width: fit-content;
     height: 5rem;
-    background-color:blueviolet;
+    background-color: blueviolet;
     top: -5rem;
     right: 0;
 }
 
 @media screen and (max-width:480px) {
- .sidebar{
-     display: none;
- }
- .grid-container {
-    display: grid;
-    min-height: 70vh;
-    width: 100vw;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: "content content content content content content";
-}
+    .sidebar {
+        display: none
+    }
+
+    .grid-container {
+        display: grid;
+        height: 100%;
+        width: 100vw;
+        grid-template-columns: 1fr;
+        grid-template-areas: "content"
+    }
 }
 
 @media screen and (max-width:640px) {
-    .sidebar{
+    .sidebar {
         display: none;
     }
-   }
+}

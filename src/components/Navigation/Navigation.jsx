@@ -71,7 +71,7 @@ export const Navigation = () => {
         </li>
         <input type="checkbox" id="check" />
         <label htmlFor="check" className="burger-menu">
-          <i class="fa-solid fa-bars"></i>
+          <i className="fa-solid fa-bars"></i>
         </label>
       </ul>
     </nav>
