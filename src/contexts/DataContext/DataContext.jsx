@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useState } from "react/cjs/react.production.min";
 import { getVideos, getCategories } from "../../services/services";
 import { DataReducer } from "../Reducers/DataReducer";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
- 
   const [data, dispatch] = useReducer(DataReducer, {
     videos: [],
     categories: [],

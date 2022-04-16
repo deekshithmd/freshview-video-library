@@ -19,3 +19,9 @@
 .footer-social-icons i {
     color: var(--secondary-white-text-color)
 }
+
+@media screen and(max-width:480px) {
+    .footer-text{
+        display: none;
+    }
+}

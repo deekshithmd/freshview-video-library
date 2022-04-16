@@ -23,7 +23,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit:cover;
 }
 
 .banner-content-container {
@@ -66,12 +66,12 @@
 .banner-btn {
     padding: 1rem 0.5rem;
     font-size: 2rem;
-    background-color: #09cc02;
+    background-color: var(--primary-color);
     border-radius: 5px;
 }
 
 .banner-btn:hover {
-    background-color: #19a514;
+    background-color: var(--primary-hover);
 }
 
 .home-category-heading {
@@ -84,6 +84,7 @@
 .course-categories {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .category-card {
@@ -116,4 +117,32 @@
 .trending-courses {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+@media screen and(max-width:480px) {
+    .trending-courses{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .category-card {
+        width: 15rem;
+        min-height: 14rem;
+        gap: 1rem;
+    }
+    .course-categories{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+   
+    .banner-container{
+        display: none;
+    }
 }

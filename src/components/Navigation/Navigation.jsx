@@ -1,10 +1,9 @@
-import "./navigation.css"
+import "./navigation.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 export const Navigation = () => {
   const navigate = useNavigate();
-
   const { isLoggedin, setIsLoggedin } = useAuth();
 
   const logoutHandler = () => {
@@ -70,6 +69,10 @@ export const Navigation = () => {
             <i className="fas fa-moon nav-icon"></i>
           </span>
         </li>
+        <input type="checkbox" id="check" />
+        <label htmlFor="check" className="burger-menu">
+          <i class="fa-solid fa-bars"></i>
+        </label>
       </ul>
     </nav>
   );

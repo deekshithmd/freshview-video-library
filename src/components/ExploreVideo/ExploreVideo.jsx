@@ -42,16 +42,7 @@ export const ExploreVideo = () => {
                             <button>Add</button>
                           </span>
                         )}
-                        <span className="option-item">
-                          Save to Playlist
-                          <div>
-                            {data.playlist.map((play) => (
-                              <li key={play._id} className="op">
-                                {play.title}
-                              </li>
-                            ))}
-                          </div>
-                        </span>
+                        <span className="option-item">Save to Playlist</span>
                         <span className="option-item">Add Watch Later</span>
                       </div>
                     </span>

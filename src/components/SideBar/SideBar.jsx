@@ -1,56 +1,52 @@
 import "./sidebar.css";
-import { NavLink } from "react-router-dom";
+import { v4 as uuid } from "uuid";
+import { SideBarItem } from "../SideBarItem/SideBarItem";
+
 export const SideBar = () => {
-  const activeStyle = {
-    color: "var(--secondary-color)",
-  };
+  const addresses = [
+    {
+      _id: uuid(),
+      page: "Home",
+      path: "",
+      icon: "fa-solid fa-house-chimney",
+    },
+    {
+      _id: uuid(),
+      page: "Explore",
+      path: "explore",
+      icon: "fa-regular fa-compass",
+    },
+    {
+      _id: uuid(),
+      page: "Playlist",
+      path: "playlist",
+      icon: "fa-solid fa-circle-play",
+    },
+    {
+      _id: uuid(),
+      page: "Liked",
+      path: "liked",
+      icon: "fa-solid fa-thumbs-up",
+    },
+    {
+      _id: uuid(),
+      page: "Watch Later",
+      path: "watchlater",
+      icon: "fa-solid fa-clock ",
+    },
+    {
+      _id: uuid(),
+      page: "History",
+      path: "history",
+      icon: "fa-solid fa-clock-rotate-left ",
+    },
+  ];
 
   return (
     <ul className="sidebar-container list-style-none">
-      <NavLink
-        to="/"
-        style={({ isActive }) => (isActive ?activeStyle : undefined)}
-        className="inline-item link-style-none text-md text-bold"
-      >
-        <i className="fa-solid fa-house-chimney sidebar-icon margin-r"></i>Home
-      </NavLink>
-      <NavLink
-        to="/explore"
-        style={({ isActive }) => (isActive ?activeStyle : undefined)}
-        className="inline-item link-style-none text-md text-bold"
-      >
-        <i className="fa-regular fa-compass sidebar-icon margin-r"></i>Explore
-      </NavLink>
-      <NavLink
-        to="/playlist"
-        style={({ isActive }) => (isActive ?activeStyle : undefined)}
-        className="inline-item link-style-none text-md text-bold"
-      >
-        <i className="fa-solid fa-circle-play sidebar-icon margin-r"></i>
-        Playlist
-      </NavLink>
-      <NavLink
-        to="/liked"
-        style={({ isActive }) => (isActive ?activeStyle : undefined)}
-        className="inline-item link-style-none text-md text-bold"
-      >
-        <i className="fa-solid fa-thumbs-up sidebar-icon margin-r"></i>Liked
-      </NavLink>
-      <NavLink
-        to="/watchlater"
-        style={({ isActive }) => (isActive ?activeStyle : undefined)}
-        className="inline-item link-style-none text-md text-bold"
-      >
-        <i className="fa-solid fa-clock sidebar-icon margin-r"></i>Watch Later
-      </NavLink>
-      <NavLink
-        to="/history"
-        style={({ isActive }) => (isActive ?activeStyle : undefined)}
-        className="inline-item link-style-none text-md text-bold"
-      >
-        <i className="fa-solid fa-clock-rotate-left sidebar-icon margin-r"></i>
-        History
-      </NavLink>
+      {addresses.map((link) => (
+        <SideBarItem link={link} key={link._id} />
+      ))}
     </ul>
   );
 };

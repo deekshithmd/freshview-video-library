@@ -2,6 +2,7 @@
 .grid-container {
     display: grid;
     min-height: 70vh;
+    width: 100vw;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: "sidebar content content content content content";
 }
@@ -36,9 +37,6 @@
     height: 100%;
 }
 
-/* .video-details{
-    padding: 5px 9px;
-} */
 .video-header {
     display: flex;
     justify-content: space-between;
@@ -107,8 +105,21 @@
     right: 0;
 }
 
-.op{
-    border: 1px solid red;
-    background-color: blue;
-    padding: 1rem;
+@media screen and (max-width:480px) {
+ .sidebar{
+     display: none;
+ }
+ .grid-container {
+    display: grid;
+    min-height: 70vh;
+    width: 100vw;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: "content content content content content content";
 }
+}
+
+@media screen and (max-width:640px) {
+    .sidebar{
+        display: none;
+    }
+   }

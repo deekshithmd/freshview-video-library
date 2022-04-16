@@ -10,8 +10,8 @@ import { WatchLater } from "./WatchLater/WatchLater";
 import { RequiresAuth } from "./RequiresAuth/RequiresAuth";
 import { Login } from "./Login/Login";
 import { Signup } from "./Signup/Signup";
-
 import { Error } from "./Error/Error";
+import { SideBarItem } from "./SideBarItem/SideBarItem";
 
 export {
   Navigation,
@@ -27,4 +27,5 @@ export {
   Login,
   Signup,
   Error,
+  SideBarItem,
 };
