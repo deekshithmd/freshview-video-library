@@ -8,20 +8,38 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
-    description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+    categoryName: "Fish Farming",
+    videoThumbnail: "https://i.postimg.cc/9f9bz3VZ/fish-4.png",
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
-    description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+    categoryName: "Poultry Farming",
+    videoThumbnail: "https://i.postimg.cc/Njq5YZNW/poultry-1.png",
+  },
+
+  {
+    _id: uuid(),
+    categoryName: "Forestry Farming",
+    videoThumbnail: "https://i.postimg.cc/3JbFBrx2/forest-3.png",
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
-    description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+    categoryName: "Vegetable Farming",
+    videoThumbnail: "https://i.postimg.cc/bvLJxrzh/vegetable-3.png",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Dairy Farming",
+    videoThumbnail: "https://i.postimg.cc/RhdX9cmY/dairy-3.png",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Fruit Farming",
+    videoThumbnail: "https://i.postimg.cc/HLb0dQ4t/fruit-3.png",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Others",
+    videoThumbnail: "https://i.postimg.cc/dtzT3h0N/others-3.png",
   },
 ];

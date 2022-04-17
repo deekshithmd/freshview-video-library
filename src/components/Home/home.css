@@ -1,0 +1,148 @@
+.home-container {
+    min-height: 70vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.banner-container {
+    height: 40rem;
+    width: 100%;
+    padding: 2rem 2rem 0 2rem;
+}
+
+.banner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.banner-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.banner-content-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.banner-content {
+    height: 100%;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary-white-text-color);
+    background-color: var(--light-black-background);
+    opacity: 0.8;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.banner-heading {
+    font-size: 4rem;
+}
+
+.banner-sub-heading {
+    font-size: 3.2rem;
+}
+
+.arrow-down {
+    font-size: 3rem;
+}
+
+.banner-btn {
+    padding: 1rem 0.5rem;
+    font-size: 2rem;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.banner-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.home-category-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 2rem;
+}
+
+.course-categories {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.category-card {
+    width: 25rem;
+    min-height: 14rem;
+}
+
+.category-video-image {
+    position: relative;
+    background-color: var(--background-black);
+}
+
+.category-image {
+    opacity: 0.2;
+}
+
+.category-image:hover {
+    opacity: 1;
+}
+
+.category-name {
+    position: absolute;
+    z-index: 1;
+    top: 4rem;
+    left: 20%;
+    color: var(--primary-color);
+}
+
+
+.trending-courses {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+@media screen and(max-width:480px) {
+    .trending-courses{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .category-card {
+        width: 15rem;
+        min-height: 14rem;
+        gap: 1rem;
+    }
+    .course-categories{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+   
+    .banner-container{
+        display: none;
+    }
+}
