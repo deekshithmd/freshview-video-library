@@ -1,0 +1,96 @@
+.single-video-grid {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-areas: "player player player player player player player suggested suggested suggested"
+        "details details details details details details details suggested suggested suggested";
+    grid-template-rows: auto 1fr;
+    min-height: 70vh;
+}
+
+.video-container {
+    grid-area: player;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem 2rem 0 2rem;
+    min-height: 45rem;
+}
+
+.video-detail {
+    grid-area: details;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 2rem 2rem;
+}
+
+.l-h-0 {
+    line-height: 0;
+}
+
+.data-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.action-item {
+    background-color: var(--light-background);
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 0 3px;
+}
+
+.action-item:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.suggested-list {
+    grid-area: suggested;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    overflow-y: scroll;
+    height: auto;
+}
+
+.add-comment {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.add-comment input {
+    width: 59rem;
+}
+
+.show-comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.user-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media screen and(max-width:480px) {
+    .single-video-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "player"
+            "details"
+            "suggested";
+    }
+    .video-detail {
+        display: none;
+    }
+}

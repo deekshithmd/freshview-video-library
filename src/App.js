@@ -6,6 +6,7 @@ import {
   PlayList,
   WatchLater,
   History,
+  SingleVideo,
   Home,
   RequiresAuth,
   Login,
@@ -52,6 +53,7 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="/singlevideo/:videoId" element={<SingleVideo />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error />} />

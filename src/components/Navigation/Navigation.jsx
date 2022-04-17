@@ -41,27 +41,28 @@ export const Navigation = () => {
           </li>
         )}
 
-        <Link to="/profile">
-          <li className="list-inline-item">
-            <div className="avatar avatar-xs">
-              <img
-                className="img-responsive img-round"
-                src="https://i.postimg.cc/28Zcgq1j/avatar.png"
-                alt="Avatar"
-              />
-            </div>
-          </li>
-        </Link>
-
         {isLoggedin && (
-          <li className="list-inline-item">
-            <button
-              className="btn btn-icon-primary user-signout"
-              onClick={logoutHandler}
-            >
-              <i className="fa fa-sign-out fa-2x"></i>
-            </button>
-          </li>
+          <>
+            <Link to="/profile">
+              <li className="list-inline-item">
+                <div className="avatar avatar-xs">
+                  <img
+                    className="img-responsive img-round"
+                    src="https://i.postimg.cc/28Zcgq1j/avatar.png"
+                    alt="Avatar"
+                  />
+                </div>
+              </li>
+            </Link>
+            <li className="list-inline-item">
+              <button
+                className="btn btn-icon-primary user-signout"
+                onClick={logoutHandler}
+              >
+                <i className="fa fa-sign-out fa-2x"></i>
+              </button>
+            </li>
+          </>
         )}
 
         <li className="list-inline-item">

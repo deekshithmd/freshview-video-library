@@ -1,4 +1,10 @@
 @import url("../src/components/ExploreVideo/explorevideo.css");
+
+:root{
+  --option-background:#22b527;
+  --option-hover:#058009;
+}
+
 body {
   box-sizing: border-box;
   width: 100vw;

@@ -1,11 +1,72 @@
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  addWatchLater,
+  addHistory,
+  addPlaylist,
+  addPlaylistVideo,
+  getPlaylists,
+} from "../../services";
 import "./home.css";
 export const Home = () => {
+  const [id, setId] = useState();
+  const [playlistModal, setPlaylistModal] = useState(false);
+  const [playlistName, setPlaylistName] = useState("");
+  const token = localStorage.getItem("login");
   const navigate = useNavigate();
-  const { data } = useData();
+  const { data, dispatch } = useData();
   let i = 0;
+
+  const showSingleVideo = (video) => {
+    addHistoryVideo(video);
+    navigate(`/singlevideo/${video._id}`);
+  };
+
+  const addNewPlaylist = async (playlistName) => {
+    const playRes = await addPlaylist({
+      title: playlistName,
+      encodedToken: token,
+    });
+    dispatch({ type: "LOAD_PLAYLIST", payload: playRes.data.playlists });
+  };
+
+  const addPlaylistVideos = async (video, playlistId) => {
+    setPlaylistModal(false);
+    setId(0);
+    const response = await addPlaylistVideo({
+      video: video,
+      playlistId: playlistId,
+      encodedToken: token,
+    });
+    const playlistResponse = await getPlaylists({ encodedToken: token });
+    dispatch({
+      type: "LOAD_PLAYLIST",
+      payload: playlistResponse.data.playlists,
+    });
+  };
+
+  const addHistoryVideo = async (video) => {
+    const historyResponse = await addHistory({
+      video: video,
+      encodedToken: token,
+    });
+    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
+  };
+
+  const addWatchlater = async (video) => {
+    setId(0);
+    const watchlaterResponse = await addWatchLater({
+      video: video,
+      encodedToken: token,
+    });
+    dispatch({
+      type: "LOAD_WATCHLATER",
+      payload: watchlaterResponse.data.watchlater,
+    });
+  };
+
   return (
     <div className="home-container">
       <div className="banner-container margin-b">
@@ -80,7 +141,10 @@ export const Home = () => {
           return (
             video.views > 600000 && (
               <div className="video-card" key={video._id}>
-                <div className="video-image">
+                <div
+                  className="video-image"
+                  onClick={() => showSingleVideo(video)}
+                >
                   <img
                     src={video.videoThumbnail}
                     alt="thumb"
@@ -92,7 +156,82 @@ export const Home = () => {
                     <span className=" video-title text-justify">
                       {video.title}
                     </span>
-                    <i className="fa-solid fa-ellipsis-vertical options"></i>
+                    <i
+                      className="fa-solid fa-ellipsis-vertical options"
+                      onClick={() => setId(id ? 0 : video._id)}
+                    ></i>
+                    {id === video._id && (
+                      <span className="option-show">
+                        <div className="video-options text-sm">
+                          {playlistModal && (
+                            <div className="modal-container">
+                              <div className="modal">
+                                <section className="modal-header">
+                                  <p className="text-md text-bold">Playlists</p>
+                                  <i
+                                    className="fa-solid fa-xmark text-xl"
+                                    onClick={() => {
+                                      setPlaylistModal(false);
+                                      setId(0);
+                                    }}
+                                  ></i>
+                                </section>
+                                <section className="modal-content text-sm">
+                                  {data.playlist.length > 0 ? (
+                                    data.playlist.map((playlist) => (
+                                      <div
+                                        key={playlist._id}
+                                        className="option"
+                                        onClick={() =>
+                                          addPlaylistVideos(video, playlist._id)
+                                        }
+                                      >
+                                        {playlist.title}
+                                      </div>
+                                    ))
+                                  ) : (
+                                    <h3>No playlists</h3>
+                                  )}
+                                </section>
+                                <section className="modal-actions">
+                                  <input
+                                    className="input standard"
+                                    type="text"
+                                    placeholder="Enter playlist name"
+                                    onChange={(e) =>
+                                      setPlaylistName(e.target.value)
+                                    }
+                                  />
+                                  <button
+                                    className="btn btn-solid-primary"
+                                    onClick={() => addNewPlaylist(playlistName)}
+                                  >
+                                    Add PlayList
+                                  </button>
+                                </section>
+                              </div>
+                            </div>
+                          )}
+
+                          <span
+                            className="option-item"
+                            onClick={() =>
+                              setPlaylistModal((isShow) =>
+                                isShow ? false : true
+                              )
+                            }
+                          >
+                            Save to Playlist
+                          </span>
+                          <span
+                            className="option-item"
+                            onClick={() => addWatchlater(video)}
+                          >
+                            Add Watch Later
+                          </span>
+                        </div>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
