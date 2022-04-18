@@ -13,7 +13,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 5rem;
 }
 
 .inline-item:hover {

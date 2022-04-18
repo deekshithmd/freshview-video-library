@@ -12,6 +12,8 @@ import { Login } from "./Login/Login";
 import { Signup } from "./Signup/Signup";
 import { Error } from "./Error/Error";
 import { SideBarItem } from "./SideBarItem/SideBarItem";
+import { SingleVideo } from "./SingleVideo/SingleVideo";
+import { Video } from "./Video/Video";
 
 export {
   Navigation,
@@ -28,4 +30,6 @@ export {
   Signup,
   Error,
   SideBarItem,
+  SingleVideo,
+  Video,
 };
