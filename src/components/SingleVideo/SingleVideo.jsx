@@ -183,7 +183,7 @@ export const SingleVideo = () => {
                       </div>
                       <div className="video-footer text-sm">
                         <span>{video.creator}</span>
-                        <span>12/05/2018</span>
+                        <span>{video.date}</span>
                       </div>
                     </div>
                   </div>
