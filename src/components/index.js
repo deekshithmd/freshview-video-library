@@ -14,6 +14,7 @@ import { Error } from "./Error/Error";
 import { SideBarItem } from "./SideBarItem/SideBarItem";
 import { SingleVideo } from "./SingleVideo/SingleVideo";
 import { Video } from "./Video/Video";
+import {PlaylistVideos} from "./PlaylistVideos/PlaylistVideos"
 
 export {
   Navigation,
@@ -32,4 +33,5 @@ export {
   SideBarItem,
   SingleVideo,
   Video,
+  PlaylistVideos
 };

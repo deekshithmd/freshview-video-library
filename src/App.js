@@ -12,6 +12,7 @@ import {
   Login,
   Signup,
   Error,
+  PlaylistVideos
 } from "./components";
 import { Navigation, Footer } from "./components";
 function App() {
@@ -54,6 +55,7 @@ function App() {
           }
         />
         <Route path="/singlevideo/:videoId" element={<SingleVideo />} />
+        <Route path="/playlistvideos/:playId" element={<PlaylistVideos/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error />} />

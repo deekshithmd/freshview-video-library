@@ -16,6 +16,7 @@ export const ExploreVideo = () => {
   const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const { data, dispatch } = useData();
+  const [createPlaylist, setCreatePlaylist] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
 
@@ -25,6 +26,7 @@ export const ExploreVideo = () => {
   };
 
   const addNewPlaylist = async (playlistName) => {
+    setCreatePlaylist(false)
     const playlistResponse = await addPlaylist({
       title: playlistName,
       encodedToken: token,
@@ -43,7 +45,7 @@ export const ExploreVideo = () => {
       playlistId: playlistId,
       encodedToken: token,
     });
-    console.log("play", response);
+    console.log("playvideoadded", response);
     const playlistResponse = await getPlaylists({ encodedToken: token });
     dispatch({
       type: "LOAD_PLAYLIST",
@@ -130,24 +132,38 @@ export const ExploreVideo = () => {
                                     </div>
                                   ))
                                 ) : (
-                                  <h3>No playlists</h3>
+                                  <h4>No playlists Created</h4>
                                 )}
                               </section>
                               <section className="modal-actions">
-                                <input
-                                  className="input standard"
-                                  type="text"
-                                  placeholder="Enter playlist name"
-                                  onChange={(e) =>
-                                    setPlaylistName(e.target.value)
-                                  }
-                                />
-                                <button
-                                  className="btn btn-solid-primary"
-                                  onClick={() => addNewPlaylist(playlistName)}
-                                >
-                                  Add PlayList
-                                </button>
+                                {createPlaylist && (
+                                  <>
+                                    <input
+                                      className="input standard"
+                                      type="text"
+                                      placeholder="Enter playlist name"
+                                      onChange={(e) =>
+                                        setPlaylistName(e.target.value)
+                                      }
+                                    />
+                                    <button
+                                      className="btn btn-solid-primary"
+                                      onClick={() =>
+                                        addNewPlaylist(playlistName)
+                                      }
+                                    >
+                                      Create
+                                    </button>
+                                  </>
+                                )}
+                                {!createPlaylist && (
+                                  <button
+                                    className="btn btn-solid-primary"
+                                    onClick={() => setCreatePlaylist(true)}
+                                  >
+                                    Create Playlist
+                                  </button>
+                                )}
                               </section>
                             </div>
                           </div>
