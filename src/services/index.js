@@ -2,10 +2,10 @@ import {
   getVideos,
   getCategories,
   getLikedVideos,
-  addLikedVideos,
+  addLikedVideo,
   addWatchLater,
   getWatchLater,
-  deleteLikedVideos,
+  deleteLikedVideo,
   deleteWatchLater,
   addHistory,
   getHistory,
@@ -14,17 +14,19 @@ import {
   getPlaylists,
   addPlaylist,
   addPlaylistVideo,
-  getPlaylistVideo
+  getPlaylistVideo,
+  deletePlaylistVideo,
+  deletePlaylist
 } from "./services";
 
 export {
   getVideos,
   getCategories,
   getLikedVideos,
-  addLikedVideos,
+  addLikedVideo,
   addWatchLater,
   getWatchLater,
-  deleteLikedVideos,
+  deleteLikedVideo,
   deleteWatchLater,
   addHistory,
   getHistory,
@@ -33,5 +35,7 @@ export {
   addPlaylist,
   getPlaylists,
   addPlaylistVideo,
-  getPlaylistVideo
+  getPlaylistVideo,
+  deletePlaylistVideo,
+  deletePlaylist
 };

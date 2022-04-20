@@ -18,7 +18,7 @@
     grid-area: content;
 }
 
-.content.video-list {
+.video-list {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;

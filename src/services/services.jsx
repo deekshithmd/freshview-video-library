@@ -11,7 +11,7 @@ export const getLikedVideos = async ({ encodedToken }) =>
     },
   });
 
-export const addLikedVideos = async ({ video, encodedToken }) =>
+export const addLikedVideo = async ({ video, encodedToken }) =>
   await axios.post(
     "/api/user/likes",
     { video },
@@ -22,7 +22,7 @@ export const addLikedVideos = async ({ video, encodedToken }) =>
     }
   );
 
-export const deleteLikedVideos = async ({ videoId, encodedToken }) =>
+export const deleteLikedVideo = async ({ videoId, encodedToken }) =>
   await axios.delete(`/api/user/likes/${videoId}`, {
     headers: {
       authorization: encodedToken,

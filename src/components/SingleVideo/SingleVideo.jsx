@@ -3,9 +3,9 @@ import { Video,SideBar} from ".."
 import { useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
-  addLikedVideos,
+  addLikedVideo,
   addWatchLater,
-  deleteLikedVideos,
+  deleteLikedVideo,
   deleteWatchLater,
 } from "../../services";
 
@@ -19,7 +19,7 @@ export const SingleVideo = () => {
   const watch = data.watchlater.some((v) => v._id === videoId);
 
   const addLike = async (video) => {
-    const likeRes = await addLikedVideos({ video: video, encodedToken: token });
+    const likeRes = await addLikedVideo({ video: video, encodedToken: token });
     dispatch({ type: "LOAD_LIKED", payload: likeRes.data.likes });
   };
 
@@ -29,7 +29,7 @@ export const SingleVideo = () => {
   };
 
   const deleteLike = async (video) => {
-    const likeRes = await deleteLikedVideos({
+    const likeRes = await deleteLikedVideo({
       videoId: video._id,
       encodedToken: token,
     });

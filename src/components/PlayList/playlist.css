@@ -1,3 +1,6 @@
+:root{
+    --block-background:rgba(86, 177, 63, 0.8);
+}
 .video-thumbnail {
     max-height: 14rem;
 }
@@ -9,16 +12,17 @@
 .half-block {
     position: absolute;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column-reverse;
+    justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 45%;
     height: 14rem;
-    background-color: rgb(110, 108, 108);
-    top:0;
+    background-color: var(--block-background);
+    top: 0;
     right: 0;
 }
 
-.delete{
+.delete {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -28,11 +32,11 @@
     right: 0;
     top: 0;
     margin: 5px;
-    background-color: white;
+    background-color: var(--white-background);
     border-radius: 50%;
 }
 
-.delete img{
+.delete img {
     width: 2rem;
     height: 2rem;
 }
@@ -42,6 +46,19 @@
     height: 6rem;
 }
 
-.playlist-title{
-  margin-left: 10rem;
+.playlist-title {
+    margin-left: 10rem;
+}
+
+.section-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+@media screen and(max-width:480px) {
+    .playlist-name{
+        display: none;
+    }
 }
