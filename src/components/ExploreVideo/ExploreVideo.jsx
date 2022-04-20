@@ -26,7 +26,7 @@ export const ExploreVideo = () => {
   };
 
   const addNewPlaylist = async (playlistName) => {
-    setCreatePlaylist(false)
+    setCreatePlaylist(false);
     const playlistResponse = await addPlaylist({
       title: playlistName,
       encodedToken: token,
@@ -45,7 +45,6 @@ export const ExploreVideo = () => {
       playlistId: playlistId,
       encodedToken: token,
     });
-    console.log("playvideoadded", response);
     const playlistResponse = await getPlaylists({ encodedToken: token });
     dispatch({
       type: "LOAD_PLAYLIST",

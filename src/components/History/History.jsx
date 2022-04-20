@@ -5,10 +5,10 @@ import { useData } from "../../contexts";
 import { addWatchLater, clearHistory, deleteHistory } from "../../services";
 
 export const History = () => {
-  const { data, dispatch } = useData();
+  const { data, dispatch,token } = useData();
   const [id, setId] = useState();
   const navigate = useNavigate();
-  const token = localStorage.getItem("login");
+  //const token = localStorage.getItem("login");
 
   const showSingleVideo = (video) => {
     navigate(`/singlevideo/${video._id}`);

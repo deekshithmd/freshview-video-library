@@ -1,16 +1,9 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../../contexts";
 export const Navigation = () => {
-  const navigate = useNavigate();
-  const { isLoggedin, setIsLoggedin } = useAuth();
-
-  const logoutHandler = () => {
-    setIsLoggedin(false);
-    localStorage.removeItem("login");
-    navigate("/");
-  };
+  const { isLoggedin } = useAuth();
 
   return (
     <nav className="navigation-bar">
@@ -54,14 +47,6 @@ export const Navigation = () => {
                 </div>
               </li>
             </Link>
-            <li className="list-inline-item">
-              <button
-                className="btn btn-icon-primary user-signout"
-                onClick={logoutHandler}
-              >
-                <i className="fa fa-sign-out fa-2x"></i>
-              </button>
-            </li>
           </>
         )}
 

@@ -26,8 +26,6 @@ export const PlaylistVideos = () => {
         playlistId: playId,
         encodedToken: token,
       });
-      console.log(playId);
-      console.log("vres", playlistResponse);
       setPlaylistVideos(playlistResponse.data.playlist.videos);
     })();
   }, []);
@@ -67,7 +65,7 @@ export const PlaylistVideos = () => {
       playlistId: playId,
       encodedToken: token,
     });
-    setPlaylistVideos(playlistResponse.data.playlist.videos);
+    setPlaylistVideos(playlistResponse.data.playlist?.videos);
     const playlistDataResponse = await getPlaylists({ encodedToken: token });
     dispatch({
       type: "LOAD_PLAYLIST",

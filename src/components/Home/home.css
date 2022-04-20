@@ -37,7 +37,7 @@
 
 .banner-content {
     height: 100%;
-    width: max-content;
+    width: 70%;
     position: absolute;
     top: 0;
     display: flex;
@@ -128,7 +128,7 @@
         flex-wrap: wrap;
         width: 100%;
     }
-
+    
     .category-card {
         width: 15rem;
         min-height: 14rem;

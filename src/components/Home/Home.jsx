@@ -136,7 +136,7 @@ export const Home = () => {
           See all <i className="fa-solid fa-angles-right"></i>
         </Link>
       </div>
-      <div className="trending-courses margin-t">
+      <div className="trending-courses margin-t margin-b">
         {data.videos.map((video) => {
           return (
             video.views > 600000 && (

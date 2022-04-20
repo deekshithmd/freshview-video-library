@@ -1,5 +1,5 @@
 import "./singlevideo.css";
-import { Video,SideBar} from ".."
+import { Video, SideBar } from "..";
 import { useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
@@ -10,7 +10,6 @@ import {
 } from "../../services";
 
 export const SingleVideo = () => {
-  
   const { videoId } = useParams();
   const { data, dispatch } = useData();
   const navigate = useNavigate();

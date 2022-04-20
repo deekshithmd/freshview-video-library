@@ -60,7 +60,6 @@ export const WatchLater = () => {
       playlistId: playlistId,
       encodedToken: token,
     });
-    console.log("playvideoadded", response);
     const playlistResponse = await getPlaylists({ encodedToken: token });
     dispatch({
       type: "LOAD_PLAYLIST",

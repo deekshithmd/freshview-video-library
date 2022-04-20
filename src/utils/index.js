@@ -1,3 +1,3 @@
 import { getTestData } from "./getTestData";
-
-export { getTestData };
+import { getCredentials } from "./getCredentials";
+export { getTestData, getCredentials };

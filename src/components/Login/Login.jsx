@@ -1,5 +1,5 @@
 import "../Signup/authentication.css";
-import { getTestData } from "../../utils";
+import { getTestData, getCredentials } from "../../utils";
 import axios from "axios";
 import { useAuth } from "../../contexts";
 import { useNavigate, Link, useLocation } from "react-router-dom";
@@ -7,21 +7,45 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 export const Login = () => {
-  const { setIsLoggedin,setToken } = useAuth();
+  const { setIsLoggedin, setUserData } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState(false);
 
   const testLogin = async () => {
     try {
-      console.log(getTestData());
       const response = await axios.post("/api/auth/login", getTestData());
       if (response.data.encodedToken) {
         localStorage.setItem(
           "login",
           JSON.stringify(response.data.encodedToken)
         );
-        setToken(localStorage.getItem("login"))
+        localStorage.setItem("user",JSON.stringify(response.data.foundUser))
+        setUserData(response.data.foundUser);
+        setIsLoggedin(true);
+        navigate(location?.state?.from?.pathname || "/");
+      }
+    } catch (e) {
+      setError(true);
+      navigate("/login");
+    }
+  };
+
+  const handleLogin = async (event) => {
+    try {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      const response = await axios.post(
+        "/api/auth/login",
+        getCredentials(email, password)
+      );
+      console.log(response.data);
+      if (response.data.encodedToken) {
+        localStorage.setItem(
+          "login",
+          JSON.stringify(response.data.encodedToken)
+        );
+        setUserData(response.data.foundUser);
         setIsLoggedin(true);
         navigate(location?.state?.from?.pathname || "/");
       }
@@ -37,7 +61,7 @@ export const Login = () => {
         <div className="form-data">
           {error && <h3>Wrong credentials</h3>}
           <h2 className="margin-b">Login</h2>
-          <form>
+          <form onSubmit={handleLogin}>
             <div className="input input-labeled outlined margin">
               <label className="label">Enter Email Address</label>
               <input
@@ -65,7 +89,7 @@ export const Login = () => {
             <input
               type="submit"
               className="btn btn-solid-primary auth-btn margin margiin-l-3-5"
-              value="Login" 
+              value="Login"
             />
           </form>
           <button

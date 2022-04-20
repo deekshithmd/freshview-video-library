@@ -7,7 +7,7 @@ import {
   addPlaylist,
   addPlaylistVideo,
   getPlaylists,
-  deleteLikedVideo
+  deleteLikedVideo,
 } from "../../services";
 
 export const Liked = () => {
