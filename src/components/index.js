@@ -16,6 +16,7 @@ import { SingleVideo } from "./SingleVideo/SingleVideo";
 import { Video } from "./Video/Video";
 import {PlaylistVideos} from "./PlaylistVideos/PlaylistVideos"
 import { Profile } from "./Profile/Profile";
+import { Loader } from "./Loader/Loader";
 
 export {
   Navigation,
@@ -35,5 +36,6 @@ export {
   SingleVideo,
   Video,
   PlaylistVideos,
-  Profile
+  Profile,
+  Loader
 };

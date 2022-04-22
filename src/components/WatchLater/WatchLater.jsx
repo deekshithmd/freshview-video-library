@@ -1,71 +1,20 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  deleteWatchLater,
-  addHistory,
-  addPlaylist,
-  addPlaylistVideo,
-  getPlaylists,
-} from "../../services";
+import { useUserActions } from "../../hooks/userActions";
 import { SideBar } from "../SideBar/SideBar";
 import { useData } from "../../contexts";
 
 export const WatchLater = () => {
-  const navigate = useNavigate();
   const [id, setId] = useState();
   const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
-  const { data, dispatch } = useData();
-  const token = localStorage.getItem("login");
-
-  const showSingleVideo = (video) => {
-    navigate(`/singlevideo/${video._id}`);
-    addHistoryVideo(video);
-  };
-
-  const addHistoryVideo = async (video) => {
-    const historyResponse = await addHistory({
-      video: video,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
-  };
-
-  const deleteWatchlater = async (video) => {
-    const watchRes = await deleteWatchLater({
-      videoId: video._id,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_WATCHLATER", payload: watchRes.data.watchlater });
-  };
-
-  const addNewPlaylist = async (playlistName) => {
-    setCreatePlaylist(false);
-    const playlistResponse = await addPlaylist({
-      title: playlistName,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
-
-  const addPlaylistVideos = async (video, playlistId) => {
-    setPlaylistModal(false);
-    setId(0);
-    const response = await addPlaylistVideo({
-      video: video,
-      playlistId: playlistId,
-      encodedToken: token,
-    });
-    const playlistResponse = await getPlaylists({ encodedToken: token });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
+  const { data } = useData();
+  const {
+    showSingleVideo,
+    deleteWatchlater,
+    addNewPlaylist,
+    addPlaylistVideos,
+  } = useUserActions();
 
   return (
     <div className="grid-container">
@@ -127,6 +76,8 @@ export const WatchLater = () => {
                                             video,
                                             playlist._id
                                           );
+                                          setPlaylistModal(false);
+                                          setId(0);
                                         }}
                                       >
                                         {playlist.title}
@@ -149,9 +100,10 @@ export const WatchLater = () => {
                                       />
                                       <button
                                         className="btn btn-solid-primary"
-                                        onClick={() =>
-                                          addNewPlaylist(playlistName)
-                                        }
+                                        onClick={() => {
+                                          addNewPlaylist(playlistName);
+                                          setCreatePlaylist(false);
+                                        }}
                                       >
                                         Create
                                       </button>

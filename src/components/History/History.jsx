@@ -2,36 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SideBar } from "../SideBar/SideBar";
 import { useData } from "../../contexts";
-import { addWatchLater, clearHistory, deleteHistory } from "../../services";
+import { useUserActions } from "../../hooks";
 
 export const History = () => {
-  const { data, dispatch,token } = useData();
+  const { data } = useData();
   const [id, setId] = useState();
   const navigate = useNavigate();
-  //const token = localStorage.getItem("login");
+  const { deleteHistoryVideo, addWatchlater, clearHistoryVideos } =
+    useUserActions();
 
   const showSingleVideo = (video) => {
     navigate(`/singlevideo/${video._id}`);
-  };
-
-  const deleteHisoryVideo = async (video) => {
-    setId(0);
-    const historyResponse = await deleteHistory({
-      videoId: video._id,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
-  };
-
-  const addWatchlater = async (video) => {
-    setId(0);
-    const watchRes = await addWatchLater({ video: video, encodedToken: token });
-    dispatch({ type: "LOAD_WATCHLATER", payload: watchRes.data.watchlater });
-  };
-
-  const clearHistoryVideos = async (token) => {
-    const historyResponse = await clearHistory({ encodedToken: token });
-    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
   };
 
   return (
@@ -42,7 +23,12 @@ export const History = () => {
       <div className="content">
         <div className="section-header">
           <h2 className="playlist-name">History</h2>
-          <button className="btn btn-solid-primary" onClick={()=>clearHistoryVideos(token)}>Clear History</button>
+          <button
+            className="btn btn-solid-primary"
+            onClick={() => clearHistoryVideos()}
+          >
+            Clear History
+          </button>
         </div>
         <div className="video-list">
           {data.history.map((video) => {
@@ -74,13 +60,19 @@ export const History = () => {
                           <span className="option-item">Save to Playlist</span>
                           <span
                             className="option-item"
-                            onClick={() => addWatchlater(video)}
+                            onClick={() => {
+                              addWatchlater(video);
+                              setId(0);
+                            }}
                           >
                             Add Watch Later
                           </span>
                           <span
                             className="option-item"
-                            onClick={() => deleteHisoryVideo(video)}
+                            onClick={() => {
+                              deleteHistoryVideo(video);
+                              setId(0);
+                            }}
                           >
                             Delete History
                           </span>

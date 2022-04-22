@@ -1,51 +1,21 @@
 import "./singlevideo.css";
 import { Video, SideBar } from "..";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useData } from "../../contexts";
-import {
-  addLikedVideo,
-  addWatchLater,
-  deleteLikedVideo,
-  deleteWatchLater,
-} from "../../services";
+import { useUserActions } from "../../hooks/userActions";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
-  const { data, dispatch } = useData();
-  const navigate = useNavigate();
-  const token = localStorage.getItem("login");
+  const { data } = useData();
+  const {
+    addWatchlater,
+    addLike,
+    deleteLike,
+    deleteWatchlater,
+    showSingleVideo,
+  } = useUserActions();
   const liked = data.liked.some((i) => i._id === videoId);
   const watch = data.watchlater.some((v) => v._id === videoId);
-
-  const addLike = async (video) => {
-    const likeRes = await addLikedVideo({ video: video, encodedToken: token });
-    dispatch({ type: "LOAD_LIKED", payload: likeRes.data.likes });
-  };
-
-  const addWatchlater = async (video) => {
-    const watchRes = await addWatchLater({ video: video, encodedToken: token });
-    dispatch({ type: "LOAD_WATCHLATER", payload: watchRes.data.watchlater });
-  };
-
-  const deleteLike = async (video) => {
-    const likeRes = await deleteLikedVideo({
-      videoId: video._id,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_LIKED", payload: likeRes.data.likes });
-  };
-
-  const deleteWatchlater = async (video) => {
-    const watchRes = await deleteWatchLater({
-      videoId: video._id,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_WATCHLATER", payload: watchRes.data.watchlater });
-  };
-
-  const showSingleVideo = (video) => {
-    navigate(`/singlevideo/${video._id}`);
-  };
 
   return (
     <div className="grid-container">
@@ -106,7 +76,7 @@ export const SingleVideo = () => {
                               : "fa-regular fa-clock margin-r"
                           }
                         ></i>
-                        {watch ? "Remove from Watch Later" : "Add Watch Later"}
+                        {watch ? "from Watch Later" : "Add Watch Later"}
                       </span>
                     </div>
                   </div>

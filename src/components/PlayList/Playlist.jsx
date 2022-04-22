@@ -1,43 +1,17 @@
 import "./playlist.css";
 import { SideBar } from "../SideBar/SideBar";
-import { useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useState } from "react";
-import { deletePlaylist,addPlaylist } from "../../services/services";
+import { useUserActions } from "../../hooks";
+
 export const PlayList = () => {
-  const navigate = useNavigate();
-  const { data, dispatch } = useData();
+ 
+  const { data } = useData();
   const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
-  const token = localStorage.getItem("login");
-
-  const showPlaylistVideos = (playId) => {
-    navigate(`/playlistvideos/${playId}`);
-  };
-
-  const deletePlayList = async (playlistId) => {
-    const playlistResponse = await deletePlaylist({
-      playlistId: playlistId,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
-
-  const addNewPlaylist = async (playlistName) => {
-    setCreatePlaylist(false);
-    const playlistResponse = await addPlaylist({
-      title: playlistName,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
+  const { deletePlayList, addNewPlaylist, showPlaylistVideos } =
+    useUserActions();
 
   return (
     <div className="grid-container">
@@ -79,7 +53,10 @@ export const PlayList = () => {
                       />
                       <button
                         className="btn btn-solid-primary"
-                        onClick={() => addNewPlaylist(playlistName)}
+                        onClick={() => {
+                          addNewPlaylist(playlistName);
+                          setCreatePlaylist(false);
+                        }}
                       >
                         Create
                       </button>

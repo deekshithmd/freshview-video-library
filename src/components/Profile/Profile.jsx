@@ -2,15 +2,26 @@ import "./profile.css";
 import { SideBar } from "../SideBar/SideBar";
 import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
+//import { useEffect,useState } from "react";
+
 export const Profile = () => {
-  const { userData, setIsLoggedin } = useAuth();
+  const { userData, setIsLoggedin, setUserData } = useAuth();
   const navigate = useNavigate();
+  //const [user,setUser]=useState()
 
   const logoutHandler = () => {
     setIsLoggedin(false);
     localStorage.removeItem("login");
+    localStorage.removeItem("user");
     navigate("/");
   };
+
+  // useEffect(() => {
+  //   (() => {
+  //     setUser(JSON.parse(localStorage.getItem("user")));
+  //     console.log("useEffect",user)
+  //   })();
+  // },[]);
 
   return (
     <div className="grid-container">

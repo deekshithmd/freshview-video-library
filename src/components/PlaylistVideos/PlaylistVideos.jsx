@@ -4,21 +4,19 @@ import { SideBar } from "../SideBar/SideBar";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
-  addWatchLater,
   deletePlaylistVideo,
   getPlaylistVideo,
   getPlaylists,
-  deletePlaylist,
-  addHistory,
 } from "../../services";
+import { useUserActions } from "../../hooks";
 
 export const PlaylistVideos = () => {
   const { playId } = useParams();
   const [id, setId] = useState();
   const [playlistVideos, setPlaylistVideos] = useState([]);
-  const navigate = useNavigate();
-  const { data, dispatch } = useData();
+  const { dispatch } = useData();
   const token = localStorage.getItem("login");
+  const { addWatchlater, deletePlayList, showSingleVideo } = useUserActions();
 
   useEffect(() => {
     (async () => {
@@ -30,59 +28,20 @@ export const PlaylistVideos = () => {
     })();
   }, []);
 
-  const showSingleVideo = (video) => {
-    navigate(`/singlevideo/${video._id}`);
-    addHistoryVideo(video);
-  };
-
-  const addHistoryVideo = async (video) => {
-    const historyResponse = await addHistory({
-      video: video,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
-  };
-
-  const addWatchlater = async (video) => {
-    setId(0);
-    const watchlaterResponse = await addWatchLater({
-      video: video,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_WATCHLATER",
-      payload: watchlaterResponse.data.watchlater,
-    });
-  };
-
   const deleteFromPlaylist = async (videoId) => {
     const playlistdeleteResponse = await deletePlaylistVideo({
       playlistId: playId,
       videoId: videoId,
       encodedToken: token,
     });
-    const playlistResponse = await getPlaylistVideo({
-      playlistId: playId,
-      encodedToken: token,
-    });
-    setPlaylistVideos(playlistResponse.data.playlist?.videos);
+
+    setPlaylistVideos(playlistdeleteResponse.data.playlist?.videos);
+    
     const playlistDataResponse = await getPlaylists({ encodedToken: token });
     dispatch({
       type: "LOAD_PLAYLIST",
       payload: playlistDataResponse.data.playlists,
     });
-  };
-
-  const deletePlayList = async (playlistId) => {
-    const playlistResponse = await deletePlaylist({
-      playlistId: playlistId,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-    navigate("/playlist");
   };
 
   return (
@@ -135,7 +94,10 @@ export const PlaylistVideos = () => {
                           </span>
                           <span
                             className="option-item"
-                            onClick={() => addWatchlater(video)}
+                            onClick={() => {
+                              addWatchlater(video);
+                              setId(0);
+                            }}
                           >
                             Add Watch Later
                           </span>

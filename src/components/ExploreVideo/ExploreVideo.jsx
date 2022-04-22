@@ -1,76 +1,19 @@
 import "./explorevideo.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SideBar } from "..";
 import { useData } from "../../contexts";
-import {
-  addWatchLater,
-  addHistory,
-  addPlaylist,
-  addPlaylistVideo,
-  getPlaylists,
-} from "../../services";
+import { Loader } from "../Loader/Loader";
+import { useUserActions } from "../../hooks";
 
 export const ExploreVideo = () => {
+  const [loading, setLoading] = useState(false);
   const [id, setId] = useState();
   const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
-  const { data, dispatch } = useData();
+  const { data } = useData();
   const [createPlaylist, setCreatePlaylist] = useState(false);
-  const navigate = useNavigate();
-  const token = localStorage.getItem("login");
-
-  const showSingleVideo = (video) => {
-    addHistoryVideo(video);
-    navigate(`/singlevideo/${video._id}`);
-  };
-
-  const addNewPlaylist = async (playlistName) => {
-    setCreatePlaylist(false);
-    const playlistResponse = await addPlaylist({
-      title: playlistName,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
-
-  const addPlaylistVideos = async (video, playlistId) => {
-    setPlaylistModal(false);
-    setId(0);
-    const response = await addPlaylistVideo({
-      video: video,
-      playlistId: playlistId,
-      encodedToken: token,
-    });
-    const playlistResponse = await getPlaylists({ encodedToken: token });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
-
-  const addHistoryVideo = async (video) => {
-    const historyResponse = await addHistory({
-      video: video,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
-  };
-
-  const addWatchlater = async (video) => {
-    setId(0);
-    const watchlaterResponse = await addWatchLater({
-      video: video,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_WATCHLATER",
-      payload: watchlaterResponse.data.watchlater,
-    });
-  };
+  const { addWatchlater, showSingleVideo, addPlaylistVideos, addNewPlaylist } =
+    useUserActions();
 
   return (
     <div className="grid-container">
@@ -78,6 +21,7 @@ export const ExploreVideo = () => {
         <SideBar />
       </div>
       <div className="content video-list">
+        {loading && <Loader loadtext={"Saving"} />}
         {data.videos.map((video) => {
           return (
             <div className="video-card" key={video._id}>
@@ -125,6 +69,8 @@ export const ExploreVideo = () => {
                                       className="option"
                                       onClick={() => {
                                         addPlaylistVideos(video, playlist._id);
+                                        setPlaylistModal(false);
+                                        setId(0);
                                       }}
                                     >
                                       {playlist.title}
@@ -147,9 +93,10 @@ export const ExploreVideo = () => {
                                     />
                                     <button
                                       className="btn btn-solid-primary"
-                                      onClick={() =>
-                                        addNewPlaylist(playlistName)
-                                      }
+                                      onClick={() => {
+                                        addNewPlaylist(playlistName);
+                                        setCreatePlaylist(false);
+                                      }}
                                     >
                                       Create
                                     </button>
@@ -180,7 +127,10 @@ export const ExploreVideo = () => {
                         </span>
                         <span
                           className="option-item"
-                          onClick={() => addWatchlater(video)}
+                          onClick={() => {
+                            addWatchlater(video);
+                            setId(0);
+                          }}
                         >
                           Add Watch Later
                         </span>

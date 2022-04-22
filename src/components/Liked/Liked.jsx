@@ -1,71 +1,21 @@
 import { SideBar } from "../SideBar/SideBar";
 import { useData } from "../../contexts";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  addHistory,
-  addPlaylist,
-  addPlaylistVideo,
-  getPlaylists,
-  deleteLikedVideo,
-} from "../../services";
+import { useUserActions } from "../../hooks/userActions";
 
 export const Liked = () => {
-  const navigate = useNavigate();
   const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
   const [id, setId] = useState();
-  const { data, dispatch } = useData();
-  const token = localStorage.getItem("login");
-
-  const showSingleVideo = (video) => {
-    navigate(`/singlevideo/${video._id}`);
-    addHistoryVideo(video);
-  };
-
-  const addHistoryVideo = async (video) => {
-    const historyResponse = await addHistory({
-      video: video,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
-  };
-
-  const addNewPlaylist = async (playlistName) => {
-    setCreatePlaylist(false);
-    const playlistResponse = await addPlaylist({
-      title: playlistName,
-      encodedToken: token,
-    });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
-
-  const addPlaylistVideos = async (video, playlistId) => {
-    setPlaylistModal(false);
-    setId(0);
-    const response = await addPlaylistVideo({
-      video: video,
-      playlistId: playlistId,
-      encodedToken: token,
-    });
-    const playlistResponse = await getPlaylists({ encodedToken: token });
-    dispatch({
-      type: "LOAD_PLAYLIST",
-      payload: playlistResponse.data.playlists,
-    });
-  };
-
-  const deleteLike = async (video) => {
-    const likeResponse = await deleteLikedVideo({
-      videoId: video._id,
-      encodedToken: token,
-    });
-    dispatch({ type: "LOAD_LIKED", payload: likeResponse.data.likes });
-  };
+  const { data } = useData();
+  const {
+    showSingleVideo,
+    addNewPlaylist,
+    addPlaylistVideos,
+    deleteLike,
+    addWatchlater,
+  } = useUserActions();
 
   return (
     <div className="grid-container">
@@ -127,6 +77,8 @@ export const Liked = () => {
                                             video,
                                             playlist._id
                                           );
+                                          setPlaylistModal(false);
+                                          setId(0);
                                         }}
                                       >
                                         {playlist.title}
@@ -149,9 +101,10 @@ export const Liked = () => {
                                       />
                                       <button
                                         className="btn btn-solid-primary"
-                                        onClick={() =>
-                                          addNewPlaylist(playlistName)
-                                        }
+                                        onClick={() => {
+                                          addNewPlaylist(playlistName);
+                                          setCreatePlaylist(false);
+                                        }}
                                       >
                                         Create
                                       </button>
@@ -179,7 +132,13 @@ export const Liked = () => {
                           >
                             Save to Playlist
                           </span>
-                          <span className="option-item">
+                          <span
+                            className="option-item"
+                            onClick={() => {
+                              addWatchlater(video);
+                              setId(0);
+                            }}
+                          >
                             Add to Watch Later
                           </span>
                           <span
