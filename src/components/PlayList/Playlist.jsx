@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useUserActions } from "../../hooks";
 
 export const PlayList = () => {
- 
   const { data } = useData();
   const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");

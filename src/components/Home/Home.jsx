@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useUserActions } from "../../hooks";
+import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
+import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
+import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
 import "./home.css";
 
 export const Home = () => {
-  const [id, setId] = useState();
-  const [playlistModal, setPlaylistModal] = useState(false);
-  const [playlistName, setPlaylistName] = useState("");
   const navigate = useNavigate();
-  const { data } = useData();
-  const {addWatchlater,addNewPlaylist,addPlaylistVideos,showSingleVideo}=useUserActions()
+  const { data, id, setId, setPlaylistModal } = useData();
+  const { showSingleVideo } = useUserActions();
   let i = 0;
 
   return (
@@ -110,80 +109,9 @@ export const Home = () => {
                     {id === video._id && (
                       <span className="option-show">
                         <div className="video-options text-sm">
-                          {playlistModal && (
-                            <div className="modal-container">
-                              <div className="modal">
-                                <section className="modal-header">
-                                  <p className="text-md text-bold">Playlists</p>
-                                  <i
-                                    className="fa-solid fa-xmark text-xl"
-                                    onClick={() => {
-                                      setPlaylistModal(false);
-                                      setId(0);
-                                    }}
-                                  ></i>
-                                </section>
-                                <section className="modal-content text-sm">
-                                  {data.playlist.length > 0 ? (
-                                    data.playlist.map((playlist) => (
-                                      <div
-                                        key={playlist._id}
-                                        className="option"
-                                        onClick={() => {
-                                          addPlaylistVideos(
-                                            video,
-                                            playlist._id
-                                          );
-                                          setPlaylistModal(false);
-                                          setId(0);
-                                        }}
-                                      >
-                                        {playlist.title}
-                                      </div>
-                                    ))
-                                  ) : (
-                                    <h3>No playlists</h3>
-                                  )}
-                                </section>
-                                <section className="modal-actions">
-                                  <input
-                                    className="input standard"
-                                    type="text"
-                                    placeholder="Enter playlist name"
-                                    onChange={(e) =>
-                                      setPlaylistName(e.target.value)
-                                    }
-                                  />
-                                  <button
-                                    className="btn btn-solid-primary"
-                                    onClick={() => addNewPlaylist(playlistName)}
-                                  >
-                                    Add PlayList
-                                  </button>
-                                </section>
-                              </div>
-                            </div>
-                          )}
-
-                          <span
-                            className="option-item"
-                            onClick={() =>
-                              setPlaylistModal((isShow) =>
-                                isShow ? false : true
-                              )
-                            }
-                          >
-                            Save to Playlist
-                          </span>
-                          <span
-                            className="option-item"
-                            onClick={() => {
-                              addWatchlater(video);
-                              setId(0);
-                            }}
-                          >
-                            Add Watch Later
-                          </span>
+                          <PlaylistModal video={video} Id={id} />
+                          <SaveToPlaylist />
+                          <SaveWatchLater video={video} />
                         </div>
                       </span>
                     )}

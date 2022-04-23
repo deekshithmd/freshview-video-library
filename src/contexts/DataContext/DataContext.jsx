@@ -1,17 +1,25 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { getVideos, getCategories } from "../../services/services";
 import { DataReducer } from "../Reducers/DataReducer";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
+  const [id, setId] = useState(0);
+  const [playlistModal, setPlaylistModal] = useState(false);
   const [data, dispatch] = useReducer(DataReducer, {
     videos: [],
     categories: [],
-    liked:[],
-    watchlater:[],
-    history:[],
-    playlist:[]
+    liked: [],
+    watchlater: [],
+    history: [],
+    playlist: [],
   });
 
   useEffect(() => {
@@ -24,7 +32,9 @@ const DataProvider = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, dispatch }}>
+    <DataContext.Provider
+      value={{ data, dispatch, id, setId, playlistModal, setPlaylistModal }}
+    >
       {children}
     </DataContext.Provider>
   );

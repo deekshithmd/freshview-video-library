@@ -3,10 +3,11 @@ import { Video, SideBar } from "..";
 import { useParams } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks/userActions";
+import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
-  const { data } = useData();
+  const { data, setPlaylistModal } = useData();
   const {
     addWatchlater,
     addLike,
@@ -58,7 +59,13 @@ export const SingleVideo = () => {
                       <span className="action-item">
                         <i className="fa-solid fa-share margin-r"></i>Share
                       </span>
-                      <span className="action-item">
+                      <PlaylistModal video={video} Id={video._id} />
+                      <span
+                        className="action-item"
+                        onClick={() =>
+                          setPlaylistModal((isShow) => (isShow ? false : true))
+                        }
+                      >
                         <i className="fa-regular fa-circle-play margin-r"></i>
                         Save
                       </span>
@@ -131,16 +138,13 @@ export const SingleVideo = () => {
             {data.videos.map((video) => {
               return (
                 video._id !== videoId && (
-                  <div
-                    className="video-card"
-                    key={video._id}
-                    onClick={() => showSingleVideo(video)}
-                  >
+                  <div className="video-card" key={video._id}>
                     <div className="video-image">
                       <img
                         src={video.videoThumbnail}
                         alt="thumb"
                         className="img-responsive"
+                        onClick={() => showSingleVideo(video)}
                       />
                     </div>
                     <div className="video-details text-md text-bold">

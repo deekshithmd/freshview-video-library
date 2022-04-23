@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SideBar } from "../SideBar/SideBar";
-import { useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
+import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
 import {
   deletePlaylistVideo,
   getPlaylistVideo,
@@ -16,7 +16,7 @@ export const PlaylistVideos = () => {
   const [playlistVideos, setPlaylistVideos] = useState([]);
   const { dispatch } = useData();
   const token = localStorage.getItem("login");
-  const { addWatchlater, deletePlayList, showSingleVideo } = useUserActions();
+  const { deletePlayList, showSingleVideo } = useUserActions();
 
   useEffect(() => {
     (async () => {
@@ -36,7 +36,7 @@ export const PlaylistVideos = () => {
     });
 
     setPlaylistVideos(playlistdeleteResponse.data.playlist?.videos);
-    
+
     const playlistDataResponse = await getPlaylists({ encodedToken: token });
     dispatch({
       type: "LOAD_PLAYLIST",
@@ -92,15 +92,7 @@ export const PlaylistVideos = () => {
                           >
                             Delete from Playlist
                           </span>
-                          <span
-                            className="option-item"
-                            onClick={() => {
-                              addWatchlater(video);
-                              setId(0);
-                            }}
-                          >
-                            Add Watch Later
-                          </span>
+                          <SaveWatchLater video={video} />
                         </div>
                       </span>
                     )}

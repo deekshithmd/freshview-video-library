@@ -1,20 +1,11 @@
-import { useState } from "react";
 import { useUserActions } from "../../hooks/userActions";
 import { SideBar } from "../SideBar/SideBar";
 import { useData } from "../../contexts";
-
+import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
+import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
 export const WatchLater = () => {
-  const [id, setId] = useState();
-  const [playlistModal, setPlaylistModal] = useState(false);
-  const [playlistName, setPlaylistName] = useState("");
-  const [createPlaylist, setCreatePlaylist] = useState(false);
-  const { data } = useData();
-  const {
-    showSingleVideo,
-    deleteWatchlater,
-    addNewPlaylist,
-    addPlaylistVideos,
-  } = useUserActions();
+  const { data, id, setId } = useData();
+  const { showSingleVideo, deleteWatchlater } = useUserActions();
 
   return (
     <div className="grid-container">
@@ -52,85 +43,9 @@ export const WatchLater = () => {
                     {id === video._id && (
                       <span className="option-show">
                         <div className="video-options text-sm">
-                          {playlistModal && (
-                            <div className="modal-container">
-                              <div className="modal">
-                                <section className="modal-header">
-                                  <p className="text-md text-bold">Playlists</p>
-                                  <i
-                                    className="fa-solid fa-xmark text-xl"
-                                    onClick={() => {
-                                      setPlaylistModal(false);
-                                      setId(0);
-                                    }}
-                                  ></i>
-                                </section>
-                                <section className="modal-content text-sm">
-                                  {data.playlist.length > 0 ? (
-                                    data.playlist.map((playlist) => (
-                                      <div
-                                        key={playlist._id}
-                                        className="option"
-                                        onClick={() => {
-                                          addPlaylistVideos(
-                                            video,
-                                            playlist._id
-                                          );
-                                          setPlaylistModal(false);
-                                          setId(0);
-                                        }}
-                                      >
-                                        {playlist.title}
-                                      </div>
-                                    ))
-                                  ) : (
-                                    <h4>No playlists Created</h4>
-                                  )}
-                                </section>
-                                <section className="modal-actions">
-                                  {createPlaylist && (
-                                    <>
-                                      <input
-                                        className="input standard"
-                                        type="text"
-                                        placeholder="Enter playlist name"
-                                        onChange={(e) =>
-                                          setPlaylistName(e.target.value)
-                                        }
-                                      />
-                                      <button
-                                        className="btn btn-solid-primary"
-                                        onClick={() => {
-                                          addNewPlaylist(playlistName);
-                                          setCreatePlaylist(false);
-                                        }}
-                                      >
-                                        Create
-                                      </button>
-                                    </>
-                                  )}
-                                  {!createPlaylist && (
-                                    <button
-                                      className="btn btn-solid-primary"
-                                      onClick={() => setCreatePlaylist(true)}
-                                    >
-                                      Create Playlist
-                                    </button>
-                                  )}
-                                </section>
-                              </div>
-                            </div>
-                          )}
-                          <span
-                            className="option-item"
-                            onClick={() =>
-                              setPlaylistModal((isShow) =>
-                                isShow ? false : true
-                              )
-                            }
-                          >
-                            Save to Playlist
-                          </span>
+                          <PlaylistModal video={video} Id={id} />
+                          <SaveToPlaylist />
+
                           <span
                             className="option-item"
                             onClick={() => deleteWatchlater(video)}

@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { SideBar } from "../SideBar/SideBar";
 import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks";
+import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
+import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
+import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
 
 export const History = () => {
-  const { data } = useData();
-  const [id, setId] = useState();
+  const { data, id, setId } = useData();
   const navigate = useNavigate();
-  const { deleteHistoryVideo, addWatchlater, clearHistoryVideos } =
-    useUserActions();
+  const { deleteHistoryVideo, clearHistoryVideos } = useUserActions();
 
   const showSingleVideo = (video) => {
     navigate(`/singlevideo/${video._id}`);
@@ -57,16 +57,9 @@ export const History = () => {
                     {id === video._id && (
                       <span className="option-show">
                         <div className="video-options text-sm">
-                          <span className="option-item">Save to Playlist</span>
-                          <span
-                            className="option-item"
-                            onClick={() => {
-                              addWatchlater(video);
-                              setId(0);
-                            }}
-                          >
-                            Add Watch Later
-                          </span>
+                          <PlaylistModal video={video} Id={id} />
+                          <SaveToPlaylist />
+                          <SaveWatchLater video={video} />
                           <span
                             className="option-item"
                             onClick={() => {
