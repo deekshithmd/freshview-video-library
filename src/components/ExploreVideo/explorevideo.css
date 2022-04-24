@@ -18,6 +18,25 @@
     grid-area: content;
 }
 
+.filters {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 5px 2rem;
+}
+
+.text-chip {
+    height: 4rem;
+    padding: 5px 1rem;
+    font-size: 1.5rem;
+}
+
+.text-chip:hover {
+    cursor: pointer
+}
+
 .video-list {
     display: flex;
     justify-content: space-evenly;

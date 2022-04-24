@@ -12,6 +12,8 @@ export const DataReducer = (state, action) => {
       return { ...state, history: action.payload };
     case "LOAD_PLAYLIST":
       return { ...state, playlist: action.payload };
+    case "LOAD_FILTERED":
+      return { ...state, filtered: action.payload };
     default:
       return state;
   }

@@ -9,18 +9,18 @@ import {
   deletePlaylist,
   deleteWatchLater,
   getPlaylists,
-  addLikedVideo
+  addLikedVideo,
 } from "../services";
 import { useData } from "../contexts";
 import { useNavigate } from "react-router-dom";
 export const useUserActions = () => {
-
-  const { dispatch } = useData();
+  const { data, dispatch, setCurrentVideo } = useData();
   const token = localStorage.getItem("login");
   const navigate = useNavigate();
 
   const showSingleVideo = (video) => {
     addHistoryVideo(video);
+    setCurrentVideo(video);
     navigate(`/singlevideo/${video._id}`);
   };
 
@@ -76,7 +76,6 @@ export const useUserActions = () => {
   };
 
   const clearHistoryVideos = async () => {
-    console.log | "deleting...";
     const historyResponse = await clearHistory({ encodedToken: token });
     dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
   };
@@ -98,7 +97,7 @@ export const useUserActions = () => {
       type: "LOAD_PLAYLIST",
       payload: playlistResponse.data.playlists,
     });
-    navigate("/playlist")
+    navigate("/playlist");
   };
 
   const deleteWatchlater = async (video) => {
@@ -118,6 +117,14 @@ export const useUserActions = () => {
     navigate(`/playlistvideos/${playId}`);
   };
 
+  const getFiltered = (category) => {
+    const filtered =
+      category === "All"
+        ? data.videos
+        : data.videos.filter((video) => video.categoryName === category);
+    dispatch({ type: "LOAD_FILTERED", payload: filtered });
+  };
+
   return {
     addWatchlater,
     addHistoryVideo,
@@ -130,6 +137,7 @@ export const useUserActions = () => {
     deletePlayList,
     deleteWatchlater,
     showPlaylistVideos,
-    addLike
+    addLike,
+    getFiltered,
   };
 };

@@ -1,13 +1,14 @@
 import "./singlevideo.css";
 import { Video, SideBar } from "..";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks/userActions";
 import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
-  const { data, setPlaylistModal } = useData();
+  const { data, setPlaylistModal, currentVideo } = useData();
   const {
     addWatchlater,
     addLike,
@@ -17,7 +18,6 @@ export const SingleVideo = () => {
   } = useUserActions();
   const liked = data.liked.some((i) => i._id === videoId);
   const watch = data.watchlater.some((v) => v._id === videoId);
-
   return (
     <div className="grid-container">
       <div className="sidebar">
@@ -137,8 +137,9 @@ export const SingleVideo = () => {
             <p className="text-md text-bold">Recommended Videos...</p>
             {data.videos.map((video) => {
               return (
-                video._id !== videoId && (
-                  <div className="video-card" key={video._id}>
+                video._id !== videoId &&
+                video.categoryName === currentVideo.categoryName && (
+                  <div className="video-card margin-b" key={video._id}>
                     <div className="video-image">
                       <img
                         src={video.videoThumbnail}

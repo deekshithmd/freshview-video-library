@@ -64,6 +64,7 @@ import {
 import {
   SaveWatchLater
 } from "./ActionItems/SaveWatchLater";
+import { Filter } from "./ActionItems/Filter";
 
 export {
   Navigation,
@@ -87,5 +88,6 @@ export {
   Loader,
   PlaylistModal,
   SaveToPlaylist,
-  SaveWatchLater
+  SaveWatchLater,
+  Filter
 };

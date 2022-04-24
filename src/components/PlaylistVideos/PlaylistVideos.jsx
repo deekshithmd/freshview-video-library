@@ -17,6 +17,7 @@ export const PlaylistVideos = () => {
   const { dispatch } = useData();
   const token = localStorage.getItem("login");
   const { deletePlayList, showSingleVideo } = useUserActions();
+  const [playlistName, setPlaylistName] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -24,6 +25,7 @@ export const PlaylistVideos = () => {
         playlistId: playId,
         encodedToken: token,
       });
+      setPlaylistName(playlistResponse.data.playlist.title);
       setPlaylistVideos(playlistResponse.data.playlist.videos);
     })();
   }, []);
@@ -51,7 +53,7 @@ export const PlaylistVideos = () => {
       </div>
       <div className="content ">
         <div className="section-header">
-          <h2 className="playlist-name">PlaylistName</h2>
+          <h2 className="playlist-name">{playlistName}</h2>
           <button
             className="btn btn-solid-primary"
             onClick={() => deletePlayList(playId)}
@@ -88,7 +90,10 @@ export const PlaylistVideos = () => {
                         <div className="video-options text-sm">
                           <span
                             className="option-item"
-                            onClick={() => deleteFromPlaylist(video._id)}
+                            onClick={() => {
+                              deleteFromPlaylist(video._id);
+                              setId(0);
+                            }}
                           >
                             Delete from Playlist
                           </span>

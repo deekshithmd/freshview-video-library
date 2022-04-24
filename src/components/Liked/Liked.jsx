@@ -6,8 +6,8 @@ import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
 import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
 
 export const Liked = () => {
-  const { data, id, setId, setPlaylistModal } = useData();
-  const { showSingleVideo, deleteLike, addWatchlater } = useUserActions();
+  const { data, id, setId } = useData();
+  const { showSingleVideo, deleteLike } = useUserActions();
 
   return (
     <div className="grid-container">
@@ -50,7 +50,10 @@ export const Liked = () => {
                           <SaveWatchLater video={video} />
                           <span
                             className="option-item"
-                            onClick={() => deleteLike(video)}
+                            onClick={() => {
+                              deleteLike(video);
+                              setId(0);
+                            }}
                           >
                             Remove from Liked
                           </span>

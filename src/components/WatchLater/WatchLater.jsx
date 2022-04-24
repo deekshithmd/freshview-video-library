@@ -48,7 +48,10 @@ export const WatchLater = () => {
 
                           <span
                             className="option-item"
-                            onClick={() => deleteWatchlater(video)}
+                            onClick={() => {
+                              deleteWatchlater(video);
+                              setId(0);
+                            }}
                           >
                             Remove Watch Later
                           </span>

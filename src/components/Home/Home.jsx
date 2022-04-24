@@ -9,8 +9,8 @@ import "./home.css";
 
 export const Home = () => {
   const navigate = useNavigate();
-  const { data, id, setId, setPlaylistModal } = useData();
-  const { showSingleVideo } = useUserActions();
+  const { data, id, setId } = useData();
+  const { showSingleVideo, getFiltered } = useUserActions();
   let i = 0;
 
   return (
@@ -35,7 +35,10 @@ export const Home = () => {
               <i className="fa-solid fa-angles-down arrow-down margin-b"></i>
               <button
                 className="banner-btn"
-                onClick={() => navigate("/explore")}
+                onClick={() => {
+                  navigate("/explore");
+                  getFiltered("All");
+                }}
               >
                 Explore Now
               </button>
@@ -59,7 +62,10 @@ export const Home = () => {
                 className="link-style-none"
                 key={category._id}
               >
-                <div className="category-card">
+                <div
+                  className="category-card"
+                  onClick={() => getFiltered(category.categoryName)}
+                >
                   <div className="category-video-image">
                     <img
                       src={category.videoThumbnail}
