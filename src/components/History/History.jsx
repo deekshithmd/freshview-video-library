@@ -4,7 +4,7 @@ import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks";
 import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
-import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
+import { WatchLaterActions } from "../ActionItems/WatchLaterActions";
 
 export const History = () => {
   const { data, id, setId } = useData();
@@ -59,7 +59,8 @@ export const History = () => {
                         <div className="video-options text-sm">
                           <PlaylistModal video={video} Id={id} />
                           <SaveToPlaylist />
-                          <SaveWatchLater video={video} />
+                          <WatchLaterActions video={video} />
+
                           <span
                             className="option-item"
                             onClick={() => {
@@ -67,7 +68,8 @@ export const History = () => {
                               setId(0);
                             }}
                           >
-                            Delete History
+                            <i className="fa-solid fa-trash margin-r"></i>
+                            Delete from History
                           </span>
                         </div>
                       </span>

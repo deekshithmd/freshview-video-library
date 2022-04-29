@@ -3,7 +3,7 @@ import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks/userActions";
 import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
-import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
+import { WatchLaterActions } from "../ActionItems/WatchLaterActions";
 
 export const Liked = () => {
   const { data, id, setId } = useData();
@@ -47,7 +47,7 @@ export const Liked = () => {
                         <div className="video-options text-sm">
                           <PlaylistModal video={video} Id={id} />
                           <SaveToPlaylist />
-                          <SaveWatchLater video={video} />
+                          <WatchLaterActions video={video} />
                           <span
                             className="option-item"
                             onClick={() => {

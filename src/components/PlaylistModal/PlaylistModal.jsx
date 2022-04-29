@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export const PlaylistModal = ({ video }) => {
   const { addPlaylistVideos, addNewPlaylist } = useUserActions();
-  //const [playlistModal, setPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
   const { data, setId, playlistModal, setPlaylistModal } = useData();
@@ -26,16 +25,19 @@ export const PlaylistModal = ({ video }) => {
             <section className="modal-content text-sm">
               {data.playlist.length > 0 ? (
                 data.playlist.map((playlist) => (
-                  <div
-                    key={playlist._id}
-                    className="option"
-                    onClick={() => {
-                      addPlaylistVideos(video, playlist._id);
-                      setPlaylistModal(false);
-                      setId(0);
-                    }}
-                  >
-                    {playlist.title}
+                  <div key={playlist._id}>
+                    <div
+                      className="option"
+                      onClick={() =>
+                        playlist.videos.some((v) => v._id === video._id)
+                          ? window.alert("already present")
+                          : (addPlaylistVideos(video, playlist._id),
+                            setPlaylistModal(false),
+                            setId(0))
+                      }
+                    >
+                      {playlist.title}
+                    </div>
                   </div>
                 ))
               ) : (

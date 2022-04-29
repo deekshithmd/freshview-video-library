@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserActions } from "../../hooks";
 import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
-import { SaveWatchLater } from "../ActionItems/SaveWatchLater";
+import { WatchLaterActions } from "../ActionItems/WatchLaterActions";
 import "./home.css";
 
 export const Home = () => {
@@ -117,7 +117,7 @@ export const Home = () => {
                         <div className="video-options text-sm">
                           <PlaylistModal video={video} Id={id} />
                           <SaveToPlaylist />
-                          <SaveWatchLater video={video} />
+                          <WatchLaterActions video={video} />
                         </div>
                       </span>
                     )}

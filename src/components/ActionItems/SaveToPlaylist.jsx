@@ -7,6 +7,7 @@ export const SaveToPlaylist = () => {
       className="option-item"
       onClick={() => setPlaylistModal((isShow) => (isShow ? false : true))}
     >
+      <i className="fa-regular fa-circle-play margin-r"></i>
       Save to Playlist
     </span>
   );

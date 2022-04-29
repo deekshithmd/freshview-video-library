@@ -1,7 +1,6 @@
 import "./singlevideo.css";
 import { Video, SideBar } from "..";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks/userActions";
 import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
@@ -104,7 +103,7 @@ export const SingleVideo = () => {
                     <input
                       className="input standard"
                       type="text"
-                      placeholder="Type your commentt"
+                      placeholder="Type your comment"
                     />
                     <button className="btn btn-solid-primary margin-l">
                       Comment

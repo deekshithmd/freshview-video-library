@@ -20,7 +20,9 @@ export const useUserActions = () => {
   const navigate = useNavigate();
 
   const showSingleVideo = (video) => {
-    addHistoryVideo(video);
+    data.history.some((historyVideo) => historyVideo._id === video._id)
+      ? null
+      : addHistoryVideo(video);
     setCurrentVideo(video);
     navigate(`/singlevideo/${video._id}`);
   };

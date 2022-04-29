@@ -10,11 +10,11 @@ const AuthProvider = ({ children }) => {
     (() => {
       if (localStorage.getItem("login")) {
         setIsLoggedin(true);
-        setUserData(JSON.parse(localStorage.getItem("user")))
+        setUserData(JSON.parse(localStorage.getItem("user")));
       }
     })();
-  },[]);
-
+  }, []);
+  
   return (
     <AuthContext.Provider
       value={{ isLoggedin, setIsLoggedin, userData, setUserData }}

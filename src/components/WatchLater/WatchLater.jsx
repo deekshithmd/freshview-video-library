@@ -3,9 +3,10 @@ import { SideBar } from "../SideBar/SideBar";
 import { useData } from "../../contexts";
 import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
 import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
+import { WatchLaterActions } from "../ActionItems/WatchLaterActions";
 export const WatchLater = () => {
   const { data, id, setId } = useData();
-  const { showSingleVideo, deleteWatchlater } = useUserActions();
+  const { showSingleVideo } = useUserActions();
 
   return (
     <div className="grid-container">
@@ -45,16 +46,7 @@ export const WatchLater = () => {
                         <div className="video-options text-sm">
                           <PlaylistModal video={video} Id={id} />
                           <SaveToPlaylist />
-
-                          <span
-                            className="option-item"
-                            onClick={() => {
-                              deleteWatchlater(video);
-                              setId(0);
-                            }}
-                          >
-                            Remove Watch Later
-                          </span>
+                          <WatchLaterActions video={video} />
                         </div>
                       </span>
                     )}
