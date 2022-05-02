@@ -1,5 +1,10 @@
-.loader{
-height: 100vh;
+.loader {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .loading {
@@ -11,7 +16,7 @@ height: 100vh;
     content: '';
     width: 5rem;
     height: 5rem;
-    border: 1rem gray;
+    border: 1rem solid var(--secondary-color);
     border-top-color: var(--primary-color);
     border-bottom-color: var(--primary-color);
     border-radius: 50%;

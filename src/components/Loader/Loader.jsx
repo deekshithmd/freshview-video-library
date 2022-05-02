@@ -1,8 +1,9 @@
 import "./loader.css";
-export const Loader = ({ loadtext }) => {
+export const Loader = ({ text }) => {
   return (
     <div className="loader">
-      <div className="loading">{loadtext}</div>
+      <h1>{text}</h1>
+      <div className="loading"></div>
     </div>
   );
 };

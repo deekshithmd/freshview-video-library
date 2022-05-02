@@ -17,7 +17,8 @@ const DataProvider = ({ children }) => {
   const [id, setId] = useState(0);
   const [playlistModal, setPlaylistModal] = useState(false);
   const [currentVideo, setCurrentVideo] = useState();
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
+  const [loadtext, setLoadText] = useState("");
   const [data, dispatch] = useReducer(DataReducer, {
     videos: [],
     categories: [],
@@ -30,17 +31,13 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const vres = await getVideos();
       dispatch({ type: "LOAD_VIDEO", payload: vres.data.videos });
       dispatch({ type: "LOAD_FILTERED", payload: vres.data.videos });
       const cres = await getCategories();
       dispatch({ type: "LOAD_CATEGORY", payload: cres.data.categories });
-      //persist data
-      // const watch = JSON.parse(localStorage.getItem("watchlater"));
-      // watch.length > 0 &&
-      //   watch.map((video) => {
-      //     addWatchlater(video)
-      //   });
+      setLoading(false);
     })();
   }, []);
 
@@ -56,7 +53,9 @@ const DataProvider = ({ children }) => {
         currentVideo,
         setCurrentVideo,
         loading,
-        setLoading
+        setLoading,
+        loadtext,
+        setLoadText,
       }}
     >
       {children}
