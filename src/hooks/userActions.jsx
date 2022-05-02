@@ -15,7 +15,7 @@ import { useData } from "../contexts";
 import { useNavigate } from "react-router-dom";
 
 export const useUserActions = () => {
-  const { data, dispatch, setCurrentVideo } = useData();
+  const { data, dispatch, setCurrentVideo, setLoading } = useData();
   const token = localStorage.getItem("login");
   const navigate = useNavigate();
 
@@ -28,6 +28,7 @@ export const useUserActions = () => {
   };
 
   const addWatchlater = async (video) => {
+    setLoading(true);
     const watchlaterResponse = await addWatchLater({
       video: video,
       encodedToken: token,
@@ -36,6 +37,7 @@ export const useUserActions = () => {
       type: "LOAD_WATCHLATER",
       payload: watchlaterResponse.data.watchlater,
     });
+    setLoading(false);
   };
 
   const addHistoryVideo = async (video) => {
