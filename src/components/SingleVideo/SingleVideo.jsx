@@ -1,12 +1,15 @@
 import "./singlevideo.css";
-import { Video, SideBar } from "..";
+import {
+  Video,
+  SideBar,
+  PlaylistModal,
+  Loader,
+  WatchLaterActions,
+  SaveToPlaylist,
+} from "..";
 import { useParams } from "react-router-dom";
 import { useData, useAuth } from "../../contexts";
 import { useUserActions } from "../../hooks/userActions";
-import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
-import { Loader } from "../Loader/Loader";
-import { WatchLaterActions } from "../ActionItems/WatchLaterActions";
-import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
 import { useNavigate } from "react-router-dom";
 
 export const SingleVideo = () => {

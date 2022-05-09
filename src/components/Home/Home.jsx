@@ -1,12 +1,9 @@
+import "./home.css";
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useUserActions } from "../../hooks";
-import { PlaylistModal } from "../PlaylistModal/PlaylistModal";
-import { SaveToPlaylist } from "../ActionItems/SaveToPlaylist";
-import { WatchLaterActions } from "../ActionItems/WatchLaterActions";
-import { Loader } from "../Loader/Loader";
-import "./home.css";
+import { PlaylistModal, SaveToPlaylist, WatchLaterActions, Loader } from "..";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -28,8 +25,8 @@ export const Home = () => {
                   alt="banner"
                 />
               </div>
-              <div className="banner-content-container">
-                <div className="banner-content">
+              <div className="banner-content-container flex">
+                <div className="banner-content flex">
                   <h1 className="banner-heading">
                     Courses on Different Farming Practices...
                   </h1>
@@ -94,8 +91,8 @@ export const Home = () => {
             </Link>
           </div>
           <div className="trending-courses margin-t margin-b">
-            {data.videos.map((video) => {
-              return (
+            {data.videos.map(
+              (video) =>
                 video.views > 600000 && (
                   <div className="video-card" key={video._id}>
                     <div
@@ -130,8 +127,7 @@ export const Home = () => {
                     </div>
                   </div>
                 )
-              );
-            })}
+            )}
           </div>
         </>
       )}

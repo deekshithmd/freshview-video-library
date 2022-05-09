@@ -1,9 +1,8 @@
 import "./playlist.css";
-import { SideBar } from "../SideBar/SideBar";
+import { SideBar, Loader } from "..";
 import { useData } from "../../contexts";
 import { useState } from "react";
 import { useUserActions } from "../../hooks";
-import { Loader } from "../Loader/Loader";
 
 export const PlayList = () => {
   const { data, loading, loadtext } = useData();
@@ -90,68 +89,66 @@ export const PlayList = () => {
             </div>
             <div className=" video-list">
               {data.playlist.length > 0 ? (
-                data.playlist.map((playlist) => {
-                  return (
-                    <div className="video-card" key={playlist._id}>
-                      <div className="video-image">
-                        {playlist.videos.length === 0 ? (
-                          <>
+                data.playlist.map((playlist) => (
+                  <div className="video-card" key={playlist._id}>
+                    <div className="video-image">
+                      {playlist.videos.length === 0 ? (
+                        <>
+                          <img
+                            src="https://i.postimg.cc/9FVzRyR4/video-thumbnail.jpg"
+                            alt="thumb"
+                            className="img-responsive video-thumbnail"
+                            onClick={() => showPlaylistVideos(playlist._id)}
+                          />
+                          <div className="half-block flex">
                             <img
-                              src="https://i.postimg.cc/9FVzRyR4/video-thumbnail.jpg"
-                              alt="thumb"
-                              className="img-responsive video-thumbnail"
-                              onClick={() => showPlaylistVideos(playlist._id)}
+                              src="https://www.svgrepo.com/show/340848/playlist.svg"
+                              alt=""
                             />
-                            <div className="half-block">
-                              <img
-                                src="https://www.svgrepo.com/show/340848/playlist.svg"
-                                alt=""
-                              />
-                              <span className="text-2xl">
-                                {playlist.videos.length}
-                              </span>
-                            </div>
-                            <div className="delete">
-                              <img
-                                src="https://www.svgrepo.com/show/352601/trash.svg"
-                                alt=""
-                                onClick={() => deletePlayList(playlist._id)}
-                              />
-                            </div>
-                          </>
-                        ) : (
-                          <>
+                            <span className="text-2xl">
+                              {playlist.videos.length}
+                            </span>
+                          </div>
+                          <div className="delete flex">
                             <img
-                              src={playlist.videos[0].videoThumbnail}
-                              alt="thumb"
-                              className="img-responsive video-thumbnail"
-                              onClick={() => showPlaylistVideos(playlist._id)}
+                              src="https://www.svgrepo.com/show/352601/trash.svg"
+                              alt=""
+                              onClick={() => deletePlayList(playlist._id)}
                             />
-                            <div className="half-block">
-                              <img
-                                src="https://www.svgrepo.com/show/340848/playlist.svg"
-                                alt=""
-                              />
-                              <span className="text-xl">
-                                {playlist.videos.length}
-                              </span>
-                            </div>
-                            <div className="delete">
-                              <img
-                                src="https://www.svgrepo.com/show/352601/trash.svg"
-                                alt=""
-                                onClick={() => deletePlayList(playlist._id)}
-                              />
-                            </div>
-                          </>
-                        )}
-                      </div>
-                      <span className="text-xl playlist-title text-bold">
-                        {playlist.title}
-                      </span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <img
+                            src={playlist.videos[0].videoThumbnail}
+                            alt="thumb"
+                            className="img-responsive video-thumbnail"
+                            onClick={() => showPlaylistVideos(playlist._id)}
+                          />
+                          <div className="half-block">
+                            <img
+                              src="https://www.svgrepo.com/show/340848/playlist.svg"
+                              alt=""
+                            />
+                            <span className="text-xl">
+                              {playlist.videos.length}
+                            </span>
+                          </div>
+                          <div className="delete">
+                            <img
+                              src="https://www.svgrepo.com/show/352601/trash.svg"
+                              alt=""
+                              onClick={() => deletePlayList(playlist._id)}
+                            />
+                          </div>
+                        </>
+                      )}
                     </div>
-                  );
-                })
+                    <span className="text-xl playlist-title text-bold">
+                      {playlist.title}
+                    </span>
+                  </div>
+                ))
               ) : (
                 <h1>No playlist created</h1>
               )}

@@ -4,8 +4,7 @@ export const Filter = () => {
   const { data } = useData();
   const { getFiltered } = useUserActions();
   return (
-    <div className="filters">
-      <p className="text-lg text-bold">Filters :</p>
+    <div className="filters margin-t">
       <span
         className="chip text-chip text-bold"
         onClick={() => getFiltered("All")}

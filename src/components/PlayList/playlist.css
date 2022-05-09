@@ -11,10 +11,7 @@
 
 .half-block {
     position: absolute;
-    display: flex;
     flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
     width: 45%;
     height: 14rem;
     background-color: var(--block-background);
@@ -24,9 +21,6 @@
 
 .delete {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 4rem;
     height: 4rem;
     right: 0;

@@ -2,8 +2,8 @@
     display: grid;
     min-height: 70vh;
     width: 100vw;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: "sidebar content content content content content";
+    grid-template-columns: 23rem auto;
+    grid-template-areas: "sidebar content";
 }
 
 .sidebar {
@@ -160,6 +160,14 @@
 }
 
 @media screen and (max-width:640px) {
+    .grid-container {
+        display: grid;
+        height: 100%;
+        width: 100vw;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "content";
+    }
     .sidebar {
         display: none;
     }

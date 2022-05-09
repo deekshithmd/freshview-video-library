@@ -1,10 +1,9 @@
 import "../Signup/authentication.css";
-import { getTestData, getCredentials } from "../../utils";
 import axios from "axios";
-import { useAuth } from "../../contexts";
+import { getTestData, getCredentials } from "../../utils";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-
 import { useState } from "react";
+import { useAuth } from "../../contexts";
 
 export const Login = () => {
   const { setIsLoggedin, setUserData } = useAuth();
@@ -20,7 +19,7 @@ export const Login = () => {
           "login",
           JSON.stringify(response.data.encodedToken)
         );
-        localStorage.setItem("user",JSON.stringify(response.data.foundUser))
+        localStorage.setItem("user", JSON.stringify(response.data.foundUser));
         setUserData(response.data.foundUser);
         setIsLoggedin(true);
         navigate(location?.state?.from?.pathname || "/");
@@ -39,7 +38,6 @@ export const Login = () => {
         "/api/auth/login",
         getCredentials(email, password)
       );
-      console.log(response.data);
       if (response.data.encodedToken) {
         localStorage.setItem(
           "login",

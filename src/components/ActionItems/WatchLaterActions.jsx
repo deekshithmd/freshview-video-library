@@ -1,13 +1,10 @@
 import { useUserActions } from "../../hooks";
 import { useData } from "../../contexts";
-import { useAuth } from "../../contexts";
-import { useNavigate } from "react-router-dom";
+
 export const WatchLaterActions = ({ video }) => {
-  const navigate = useNavigate();
   const { addWatchlater, deleteWatchlater } = useUserActions();
   const { data, setId } = useData();
-  const { isLoggedin } = useAuth();
-  let isInWatchlater = data.watchlater.some(
+  const isInWatchlater = data.watchlater.some(
     (watchlatervideo) => watchlatervideo._id === video._id
   );
 

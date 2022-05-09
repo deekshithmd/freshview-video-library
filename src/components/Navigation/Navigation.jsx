@@ -1,7 +1,7 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
-
 import { useAuth } from "../../contexts";
+
 export const Navigation = () => {
   const { isLoggedin } = useAuth();
 
