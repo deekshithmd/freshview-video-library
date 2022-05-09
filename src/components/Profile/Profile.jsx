@@ -4,13 +4,17 @@ import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  const { userData, setIsLoggedin} = useAuth();
+  const { userData, setIsLoggedin } = useAuth();
   const navigate = useNavigate();
 
   const logoutHandler = () => {
     setIsLoggedin(false);
     localStorage.removeItem("login");
     localStorage.removeItem("user");
+    localStorage.removeItem("watchlater");
+    localStorage.removeItem("liked");
+    localStorage.removeItem("history");
+    localStorage.removeItem("playlist");
     navigate("/");
   };
 

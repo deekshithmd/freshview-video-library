@@ -1,5 +1,7 @@
 .navigation-bar{
     z-index: 5;
+    position: sticky;
+    top: 0;
 }
 
 .account-data{
@@ -15,12 +17,12 @@
 }
 
 .mini-sidebar{
-    position: fixed;
+    position: absolute;
     top: 9rem;
-    height: 40rem;
+    right: 0;
+    height: fit-content;
     width: 30rem;
     background-color: var(--success-background);
-    color: white;
     z-index: 5;
     padding: 1rem;
 }

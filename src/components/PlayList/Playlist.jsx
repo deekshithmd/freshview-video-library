@@ -125,7 +125,7 @@ export const PlayList = () => {
                             className="img-responsive video-thumbnail"
                             onClick={() => showPlaylistVideos(playlist._id)}
                           />
-                          <div className="half-block">
+                          <div className="half-block flex">
                             <img
                               src="https://www.svgrepo.com/show/340848/playlist.svg"
                               alt=""
@@ -134,7 +134,7 @@ export const PlayList = () => {
                               {playlist.videos.length}
                             </span>
                           </div>
-                          <div className="delete">
+                          <div className="delete flex">
                             <img
                               src="https://www.svgrepo.com/show/352601/trash.svg"
                               alt=""

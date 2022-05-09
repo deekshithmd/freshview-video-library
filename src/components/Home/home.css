@@ -82,6 +82,7 @@
 .category-card {
     width: 25rem;
     min-height: 14rem;
+    margin-bottom: 1rem;
 }
 
 .category-video-image {
@@ -130,7 +131,6 @@
     .category-card {
         width: 15rem;
         min-height: 8rem;
-        margin: 1rem;
     }
 
     .course-categories {
@@ -175,6 +175,10 @@
         left: 20%;
         color: var(--primary-color);
     }
-    
+}
 
+@media screen and (max-width:768px) {
+    .category-card {
+        margin: 1rem;
+    }
 }
