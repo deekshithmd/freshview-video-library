@@ -23,49 +23,41 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit:cover;
+    object-fit: cover;
 }
 
 .banner-content-container {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
 }
 
-.banner-content {
-    height: 100%;
-    width: max-content;
+
+.heading-1 {
     position: absolute;
+    left: 5rem;
     top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--secondary-white-text-color);
-    background-color: var(--light-black-background);
-    opacity: 0.8;
-    padding: 2rem;
-    border-radius: 10px;
+    font-size: 6rem;
+    color: var(--secondary-text-color);
+    opacity: 1;
 }
 
-.banner-heading {
+.heading-2 {
+    position: absolute;
+    left: 30rem;
+    top: 10;
     font-size: 4rem;
+    color: var(--secondary-text-color);
+    opacity: 1;
 }
 
-.banner-sub-heading {
-    font-size: 3.2rem;
-}
 
-.arrow-down {
-    font-size: 3rem;
-}
 
 .banner-btn {
-    padding: 1rem 0.5rem;
-    font-size: 2rem;
+    position: absolute;
+    bottom: 5rem;
+    right: 5rem;
+    padding: 1.5rem 1rem;
+    font-size: 2.5rem;
     background-color: var(--primary-color);
     border-radius: 5px;
 }
@@ -90,6 +82,7 @@
 .category-card {
     width: 25rem;
     min-height: 14rem;
+    margin-bottom: 1rem;
 }
 
 .category-video-image {
@@ -120,8 +113,14 @@
     flex-wrap: wrap;
 }
 
-@media screen and(max-width:480px) {
-    .trending-courses{
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:480px) { 
+    .trending-courses {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -131,18 +130,55 @@
 
     .category-card {
         width: 15rem;
-        min-height: 14rem;
-        gap: 1rem;
+        min-height: 8rem;
     }
-    .course-categories{
+
+    .course-categories {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
         width: 100%;
     }
-   
-    .banner-container{
+
+    .heading-2{
         display: none;
+    }
+
+    .category-card {
+        margin-bottom: 1rem;
+    }
+
+    .heading-1 {
+        position: absolute;
+        left: 3rem;
+        top: 0;
+        font-size: 5rem;
+        color: var(--secondary-text-color);
+        opacity: 1;
+    }
+
+    .heading-2 {
+        position: absolute;
+        display: none !important;
+    }
+
+    .banner-btn {
+        bottom: 5rem;
+        right: 30%;
+    }
+
+    .category-name {
+        position: absolute;
+        z-index: 1;
+        top: 5px;
+        left: 20%;
+        color: var(--primary-color);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .category-card {
+        margin: 1rem;
     }
 }

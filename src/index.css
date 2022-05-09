@@ -1,5 +1,6 @@
 @import url("../src/components/ExploreVideo/explorevideo.css");
-
+@import url("../src/components//PlayList/playlist.css");
+@import url("../src/components/Home/home.css");
 :root{
   --option-background:#22b527;
   --option-hover:#058009;

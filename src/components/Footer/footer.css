@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     min-height: 10rem;
-    min-width: 100%;
+    width: 100%;
     background-color: var(--light-black-background);
     position: relative;
     bottom: 0;
@@ -18,10 +18,4 @@
 
 .footer-social-icons i {
     color: var(--secondary-white-text-color)
-}
-
-@media screen and(max-width:480px) {
-    .footer-text{
-        display: none;
-    }
 }

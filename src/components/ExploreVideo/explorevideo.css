@@ -2,8 +2,8 @@
     display: grid;
     min-height: 70vh;
     width: 100vw;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: "sidebar content content content content content";
+    grid-template-columns: 23rem auto;
+    grid-template-areas: "sidebar content";
 }
 
 .sidebar {
@@ -16,20 +16,40 @@
 
 .content {
     grid-area: content;
+    min-height: 79vh;
 }
 
-.content.video-list {
+.filters {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 5px 2rem;
+}
+
+.text-chip {
+    height: 4rem;
+    padding: 5px 1rem;
+    font-size: 1.5rem;
+}
+
+.text-chip:hover {
+    cursor: pointer
+}
+
+.video-list {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
     padding: 1rem;
 }
 
 .video-card {
     width: 25rem;
-    min-height: 20rem;
+    min-height: 16rem;
 }
 
 .video-card:hover {
@@ -85,13 +105,13 @@
     justify-content: center;
     border-radius: 5px;
     background-color: var(--option-background);
-    
+
 }
 
 .option-item {
     position: relative;
     padding: 1rem;
-    width: 14rem;
+    width: 15rem;
 }
 
 .option-item:hover {
@@ -126,21 +146,35 @@
 }
 
 @media screen and (max-width:480px) {
-    .sidebar {
-        display: none
-    }
-
     .grid-container {
         display: grid;
         height: 100%;
         width: 100vw;
         grid-template-columns: 1fr;
-        grid-template-areas: "content"
+        grid-template-areas:
+            "content"
+            "content";
+    }
+
+    .video-card{
+        margin-bottom: 1rem;
     }
 }
 
-@media screen and (max-width:640px) {
+@media screen and (max-width:768px) {
+    .grid-container {
+        display: grid;
+        height: 100%;
+        width: 100vw;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "content";
+    }
     .sidebar {
         display: none;
+    }
+
+    .video-card{
+        margin-bottom: 1rem;
     }
 }

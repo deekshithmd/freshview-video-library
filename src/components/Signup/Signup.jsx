@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export const Signup=()=>{
+export const Signup = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -14,13 +14,13 @@ export const Signup=()=>{
     try {
       event.preventDefault();
       const { firstname, lastname, email, pass } = event.target.elements;
+      console.log()
       const response = await axios.post(`/api/auth/signup`, {
-        firstname: firstname.value,
-        lastname: lastname.value,
+        firstName: firstname.value,
+        lastName: lastname.value,
         email: email.value,
         password: pass.value,
       });
-      console.log(response.data);
       if (response.data.encodedToken) {
         localStorage.setItem(
           "token",
@@ -173,4 +173,4 @@ export const Signup=()=>{
       </div>
     </div>
   );
-}
+};

@@ -2,7 +2,7 @@ import "./footer.css";
 export const Footer = () => {
   return (
     <footer className="footer">
-      <span className="text-md footer-text">
+      <span className="text-md footer-text text-center">
         {" "}
         <span className="brand-style">FreshView</span> developed and maintained by
         Deekshith M D

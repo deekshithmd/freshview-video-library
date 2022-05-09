@@ -14,6 +14,13 @@ import { Error } from "./Error/Error";
 import { SideBarItem } from "./SideBarItem/SideBarItem";
 import { SingleVideo } from "./SingleVideo/SingleVideo";
 import { Video } from "./Video/Video";
+import { PlaylistVideos } from "./PlaylistVideos/PlaylistVideos";
+import { Profile } from "./Profile/Profile";
+import { Loader } from "./Loader/Loader";
+import { PlaylistModal } from "./PlaylistModal/PlaylistModal";
+import { SaveToPlaylist } from "./ActionItems/SaveToPlaylist";
+import { WatchLaterActions } from "./ActionItems/WatchLaterActions";
+import { Filter } from "./ActionItems/Filter";
 
 export {
   Navigation,
@@ -32,4 +39,11 @@ export {
   SideBarItem,
   SingleVideo,
   Video,
+  PlaylistVideos,
+  Profile,
+  Loader,
+  PlaylistModal,
+  SaveToPlaylist,
+  WatchLaterActions,
+  Filter,
 };

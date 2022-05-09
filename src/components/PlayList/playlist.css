@@ -1,0 +1,67 @@
+:root{
+    --block-background:rgba(86, 177, 63, 0.8);
+}
+.video-thumbnail {
+    max-height: 14rem;
+}
+
+.video-card {
+    position: relative;
+}
+
+.half-block {
+    position: absolute;
+    flex-direction: column-reverse;
+    width: 45%;
+    height: 14rem;
+    background-color: var(--block-background);
+    top: 0;
+    right: 0;
+}
+
+.delete {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    right: 0;
+    top: 0;
+    margin: 5px;
+    background-color: var(--white-background);
+    border-radius: 50%;
+}
+
+.delete img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.half-block img {
+    width: 50%;
+    height: 6rem;
+}
+
+.playlist-title {
+    margin-left: 10rem;
+}
+
+.section-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+@media screen and(max-width:480px) {
+    .playlist-name{
+        display: none;
+    }
+}
+
+@media screen and(max-width:640px) {
+    .playlist-name{
+        display: none;
+    }
+    .sidebar{
+        display: none;
+    }
+}

@@ -1,6 +1,6 @@
 import "./sidebar.css";
 import { v4 as uuid } from "uuid";
-import { SideBarItem } from "../SideBarItem/SideBarItem";
+import { SideBarItem } from "..";
 
 export const SideBar = () => {
   const addresses = [

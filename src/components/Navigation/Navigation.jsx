@@ -1,17 +1,12 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { useState } from "react";
+import { useAuth, useData } from "../../contexts";
+import { SideBar } from "../SideBar/SideBar";
+
 export const Navigation = () => {
-  const navigate = useNavigate();
-  const { isLoggedin, setIsLoggedin } = useAuth();
-
-  const logoutHandler = () => {
-    setIsLoggedin(false);
-    localStorage.removeItem("login");
-    navigate("/");
-  };
-
+  const { isLoggedin } = useAuth();
+  const { showMini, setShowMini } = useData();
   return (
     <nav className="navigation-bar">
       <section className="brand logo">
@@ -44,7 +39,7 @@ export const Navigation = () => {
         {isLoggedin && (
           <>
             <Link to="/profile">
-              <li className="list-inline-item">
+              <li className="list-inline-item profile">
                 <div className="avatar avatar-xs">
                   <img
                     className="img-responsive img-round"
@@ -54,26 +49,26 @@ export const Navigation = () => {
                 </div>
               </li>
             </Link>
-            <li className="list-inline-item">
-              <button
-                className="btn btn-icon-primary user-signout"
-                onClick={logoutHandler}
-              >
-                <i className="fa fa-sign-out fa-2x"></i>
-              </button>
-            </li>
           </>
         )}
 
-        <li className="list-inline-item">
+        <li className="list-inline-item mode">
           <span className="nav-icon-link link-style-none">
             <i className="fas fa-moon nav-icon"></i>
           </span>
         </li>
-        <input type="checkbox" id="check" />
-        <label htmlFor="check" className="burger-menu">
+        <label
+          htmlFor="check"
+          className="burger-menu"
+          onClick={() => setShowMini(!showMini)}
+        >
           <i className="fa-solid fa-bars"></i>
         </label>
+        {showMini && (
+          <div className="mini-sidebar">
+            <SideBar />
+          </div>
+        )}
       </ul>
     </nav>
   );
