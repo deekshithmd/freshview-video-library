@@ -26,16 +26,9 @@ export const Home = () => {
                 />
               </div>
               <div className="banner-content-container flex">
-                <div className="banner-content flex">
-                  <h1 className="banner-heading">
-                    Courses on Different Farming Practices...
-                  </h1>
-                  <h3 className="banner-sub-heading">
-                    Are you ready to explore...?
-                  </h3>
-
-                  <i className="fa-solid fa-angles-down arrow-down margin-b"></i>
-                  <button
+                <h1 className="heading-1">Farming Courses...</h1>
+                <h1 className="heading-2">Explore different Farming practices here...</h1>
+                <button
                     className="banner-btn"
                     onClick={() => {
                       navigate("/explore");
@@ -44,7 +37,6 @@ export const Home = () => {
                   >
                     Explore Now
                   </button>
-                </div>
               </div>
             </div>
           </div>
@@ -134,3 +126,23 @@ export const Home = () => {
     </div>
   );
 };
+
+{/* <div className="banner-content flex">
+                  <h1 className="banner-heading">
+                    Courses on Different Farming Practices...
+                  </h1>
+                  <h3 className="banner-sub-heading">
+                    Are you ready to explore...?
+                  </h3>
+
+                  <i className="fa-solid fa-angles-down arrow-down margin-b"></i>
+                  <button
+                    className="banner-btn"
+                    onClick={() => {
+                      navigate("/explore");
+                      getFiltered("All");
+                    }}
+                  >
+                    Explore Now
+                  </button>
+                </div> */}

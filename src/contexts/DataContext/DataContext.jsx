@@ -5,20 +5,18 @@ import {
   useReducer,
   useState,
 } from "react";
-import { useUserActions } from "../../hooks";
 import { getVideos, getCategories } from "../../services/services";
 import { DataReducer } from "../Reducers/DataReducer";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
-  //const { addWatchlater } = useUserActions();
-  const token = localStorage.getItem("login");
   const [id, setId] = useState(0);
   const [playlistModal, setPlaylistModal] = useState(false);
   const [currentVideo, setCurrentVideo] = useState();
   const [loading, setLoading] = useState(false);
   const [loadtext, setLoadText] = useState("");
+  const [showMini,setShowMini]=useState(false)
   const [data, dispatch] = useReducer(DataReducer, {
     videos: [],
     categories: [],
@@ -56,6 +54,8 @@ const DataProvider = ({ children }) => {
         setLoading,
         loadtext,
         setLoadText,
+        showMini,
+        setShowMini
       }}
     >
       {children}

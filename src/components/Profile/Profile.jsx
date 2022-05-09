@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  const { userData, setIsLoggedin, setUserData } = useAuth();
+  const { userData, setIsLoggedin} = useAuth();
   const navigate = useNavigate();
 
   const logoutHandler = () => {

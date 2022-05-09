@@ -16,6 +16,7 @@
 
 .content {
     grid-area: content;
+    min-height: 79vh;
 }
 
 .filters {
@@ -151,11 +152,8 @@
         width: 100vw;
         grid-template-columns: 1fr;
         grid-template-areas:
+            "content"
             "content";
-    }
-
-    .sidebar {
-        display: none
     }
 
     .video-card{
@@ -163,7 +161,7 @@
     }
 }
 
-@media screen and (max-width:640px) {
+@media screen and (max-width:768px) {
     .grid-container {
         display: grid;
         height: 100%;

@@ -1,3 +1,11 @@
+.navigation-bar{
+    z-index: 5;
+}
+
+.account-data{
+    width: 25%;
+}
+
 .brand-text {
     margin-left: 0;
 }
@@ -6,8 +14,15 @@
     display: none;
 }
 
-#check {
-    display: none;
+.mini-sidebar{
+    position: fixed;
+    top: 9rem;
+    height: 40rem;
+    width: 30rem;
+    background-color: var(--success-background);
+    color: white;
+    z-index: 5;
+    padding: 1rem;
 }
 
 @media screen and (max-width:480px) {
@@ -15,7 +30,7 @@
         display: none;
     }
 
-    .list-inline-item {
+    .mode {
         display: none;
     }
 
@@ -25,23 +40,18 @@
 
     .burger-menu {
         display: block;
+        margin-right: 8rem;
+        margin-left: 2rem;
     }
 
-    #check:checked~.sidebar {
-        display: flex;
-    }
 }
 
-@media screen and (max-width:840px) {
+@media screen and (max-width:768px) {
     .search-item {
         display: none;
     }
-    
+
     .burger-menu {
         display: block;
-    }
-
-    #check:checked~.sidebar {
-        display: flex;
     }
 }

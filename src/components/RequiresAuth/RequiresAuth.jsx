@@ -4,7 +4,6 @@ import { useAuth } from "../../contexts";
 export const RequiresAuth = ({ children }) => {
   const { isLoggedin } = useAuth();
   const location = useLocation();
-  console.log("check", isLoggedin);
   return isLoggedin ? (
     children
   ) : (
