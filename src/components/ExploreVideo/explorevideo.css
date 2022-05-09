@@ -157,6 +157,10 @@
     .sidebar {
         display: none
     }
+
+    .video-card{
+        margin-bottom: 1rem;
+    }
 }
 
 @media screen and (max-width:640px) {
@@ -170,5 +174,9 @@
     }
     .sidebar {
         display: none;
+    }
+
+    .video-card{
+        margin-bottom: 1rem;
     }
 }
