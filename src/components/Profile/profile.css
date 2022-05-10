@@ -1,4 +1,4 @@
-.profile-card{
+.profile-card {
     width: 35rem;
     min-height: 30rem;
     margin: auto;
@@ -8,21 +8,22 @@
     justify-content: space-around;
     align-items: center;
     padding: 2rem;
-    border-radius: 10px;;
+    border-radius: 10px;
+    ;
     border: 2px solid var(--primary-color);
 }
 
-.profile-info{
+.profile-info {
     width: 100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.field-heading{
+.field-heading {
     width: 11rem;
 }
 
-.logout{
+.logout:hover {
     background-color: var(--danger-text-color);
 }

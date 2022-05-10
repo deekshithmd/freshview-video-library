@@ -1,12 +1,12 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useAuth, useData } from "../../contexts";
+import { useAuth, useData, useTheme } from "../../contexts";
 import { SideBar } from "../SideBar/SideBar";
 
 export const Navigation = () => {
   const { isLoggedin } = useAuth();
   const { showMini, setShowMini } = useData();
+  const { theme, Toggle } = useTheme();
   return (
     <nav className="navigation-bar">
       <section className="brand logo">
@@ -52,16 +52,19 @@ export const Navigation = () => {
           </>
         )}
 
-        <li className="list-inline-item mode">
+        <li className="list-inline-item">
           <span className="nav-icon-link link-style-none">
-            <i className="fas fa-moon nav-icon"></i>
+            <i
+              className={
+                theme === "light"
+                  ? "fas fa-moon nav-icon"
+                  : "fas fa-sun nav-icon"
+              }
+              onClick={() => Toggle()}
+            ></i>
           </span>
         </li>
-        <label
-          htmlFor="check"
-          className="burger-menu"
-          onClick={() => setShowMini(!showMini)}
-        >
+        <label className="burger-menu" onClick={() => setShowMini(!showMini)}>
           <i className="fa-solid fa-bars"></i>
         </label>
         {showMini && (

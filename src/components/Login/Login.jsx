@@ -65,7 +65,7 @@ export const Login = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="freshview@gmail.com"
+                placeholder="user@freshview.com"
               />
             </div>
             <div className="input input-labeled outlined margin">
