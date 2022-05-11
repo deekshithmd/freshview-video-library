@@ -13,16 +13,19 @@ import {
 } from "../services";
 import { useData } from "../contexts";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "./useToast";
 
 export const useUserActions = () => {
   const { data, dispatch, setCurrentVideo, setLoading, setLoadText } =
     useData();
   const token = localStorage.getItem("login");
   const navigate = useNavigate();
+  const { infoToast, warningToast } = useToast();
 
   const showSingleVideo = (video) => {
     setLoading(true);
     setLoadText("Loading...");
+    infoToast("Entering Single Video Page");
     data.history.some((historyVideo) => historyVideo._id === video._id)
       ? null
       : addHistoryVideo(video);
@@ -43,6 +46,7 @@ export const useUserActions = () => {
       payload: watchlaterResponse.data.watchlater,
     });
     setLoading(false);
+    infoToast("Added to Watchlater");
   };
 
   const addHistoryVideo = async (video) => {
@@ -51,6 +55,7 @@ export const useUserActions = () => {
       encodedToken: token,
     });
     dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
+    infoToast("Added to History");
   };
 
   const addPlaylistVideos = async (video, playlistId) => {
@@ -67,6 +72,7 @@ export const useUserActions = () => {
       payload: playlistResponse.data.playlists,
     });
     setLoading(false);
+    infoToast("Added Video to Playlist");
   };
 
   const addNewPlaylist = async (playlistName) => {
@@ -81,6 +87,7 @@ export const useUserActions = () => {
       payload: playlistResponse.data.playlists,
     });
     setLoading(false);
+    infoToast("Created New Playlist");
   };
 
   const deleteHistoryVideo = async (video) => {
@@ -92,6 +99,7 @@ export const useUserActions = () => {
     });
     dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
     setLoading(false);
+    warningToast("Deleted 1 video from History");
   };
 
   const clearHistoryVideos = async () => {
@@ -100,6 +108,7 @@ export const useUserActions = () => {
     const historyResponse = await clearHistory({ encodedToken: token });
     dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
     setLoading(false);
+    warningToast("Cleared History Videos");
   };
 
   const deleteLike = async (video) => {
@@ -111,6 +120,7 @@ export const useUserActions = () => {
     });
     dispatch({ type: "LOAD_LIKED", payload: likeResponse.data.likes });
     setLoading(false);
+    warningToast("Deleted 1 Video from Liked");
   };
 
   const deletePlayList = async (playlistId) => {
@@ -125,6 +135,7 @@ export const useUserActions = () => {
       payload: playlistResponse.data.playlists,
     });
     setLoading(false);
+    warningToast("Playlist Deleted");
     navigate("/playlist");
   };
 
@@ -137,6 +148,7 @@ export const useUserActions = () => {
     });
     dispatch({ type: "LOAD_WATCHLATER", payload: watchRes.data.watchlater });
     setLoading(false);
+    warningToast("Deleted 1 Video from Watchlater");
   };
 
   const addLike = async (video) => {
@@ -145,6 +157,7 @@ export const useUserActions = () => {
     const likeRes = await addLikedVideo({ video: video, encodedToken: token });
     dispatch({ type: "LOAD_LIKED", payload: likeRes.data.likes });
     setLoading(false);
+    infoToast("Added to Liked Videos");
   };
 
   const showPlaylistVideos = (playId) => {
@@ -160,6 +173,7 @@ export const useUserActions = () => {
         : data.videos.filter((video) => video.categoryName === category);
     dispatch({ type: "LOAD_FILTERED", payload: filtered });
     setLoading(false);
+    infoToast(`Applied ${category} Filter`);
   };
 
   return {

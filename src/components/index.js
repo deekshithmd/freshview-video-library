@@ -21,6 +21,7 @@ import { PlaylistModal } from "./PlaylistModal/PlaylistModal";
 import { SaveToPlaylist } from "./ActionItems/SaveToPlaylist";
 import { WatchLaterActions } from "./ActionItems/WatchLaterActions";
 import { Filter } from "./ActionItems/Filter";
+import { Toast } from "./Toast/Toast";
 
 export {
   Navigation,
@@ -46,4 +47,5 @@ export {
   SaveToPlaylist,
   WatchLaterActions,
   Filter,
+  Toast,
 };

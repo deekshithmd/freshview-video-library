@@ -4,12 +4,14 @@ import { getTestData, getCredentials } from "../../utils";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts";
+import { useToast } from "../../hooks";
 
 export const Login = () => {
   const { setIsLoggedin, setUserData } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState(false);
+  const { successToast, errorToast } = useToast();
 
   const testLogin = async () => {
     try {
@@ -22,9 +24,11 @@ export const Login = () => {
         localStorage.setItem("user", JSON.stringify(response.data.foundUser));
         setUserData(response.data.foundUser);
         setIsLoggedin(true);
+        successToast("Welcome to FreshView Video Library");
         navigate(location?.state?.from?.pathname || "/");
       }
     } catch (e) {
+      errorToast("Some Error Occured...");
       setError(true);
       navigate("/login");
     }
@@ -48,6 +52,7 @@ export const Login = () => {
         navigate(location?.state?.from?.pathname || "/");
       }
     } catch (e) {
+      errorToast("Login failed ...");
       setError(true);
       navigate("/login");
     }
@@ -57,7 +62,7 @@ export const Login = () => {
     <div className="home-container">
       <div className="form">
         <div className="form-data">
-          {error && <h3>Wrong credentials</h3>}
+          {error && <h3>Invalid Credentials</h3>}
           <h2 className="margin-b">Login</h2>
           <form onSubmit={handleLogin}>
             <div className="input input-labeled outlined margin">

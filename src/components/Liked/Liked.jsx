@@ -24,7 +24,7 @@ export const Liked = () => {
         <div className="video-list">
           {loading ? (
             <Loader text={loadtext} />
-          ) : (
+          ) : data?.liked?.length > 0 ? (
             data.liked.map((video) => (
               <div className="video-card" key={video._id}>
                 <div
@@ -74,6 +74,8 @@ export const Liked = () => {
                 </div>
               </div>
             ))
+          ) : (
+            <h1>0 Video Liked by You</h1>
           )}
         </div>
       </div>
