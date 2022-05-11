@@ -49,6 +49,7 @@ export const Login = () => {
         );
         setUserData(response.data.foundUser);
         setIsLoggedin(true);
+        successToast("Welcome to FreshView Video Library");
         navigate(location?.state?.from?.pathname || "/");
       }
     } catch (e) {
