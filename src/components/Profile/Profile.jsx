@@ -2,10 +2,12 @@ import "./profile.css";
 import { SideBar } from "../SideBar/SideBar";
 import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../hooks";
 
 export const Profile = () => {
   const { userData, setIsLoggedin } = useAuth();
   const navigate = useNavigate();
+  const {successToast}=useToast()
 
   const logoutHandler = () => {
     setIsLoggedin(false);
@@ -15,6 +17,7 @@ export const Profile = () => {
     localStorage.removeItem("liked");
     localStorage.removeItem("history");
     localStorage.removeItem("playlist");
+    successToast("Succefully Logged Out...")
     navigate("/");
   };
 

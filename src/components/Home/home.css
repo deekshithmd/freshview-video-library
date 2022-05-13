@@ -37,7 +37,7 @@
     left: 5rem;
     top: 0;
     font-size: 6rem;
-    color: var(--secondary-text-color);
+    color: var(--white-text-color);
     opacity: 1;
 }
 
@@ -46,7 +46,7 @@
     left: 30rem;
     top: 10;
     font-size: 4rem;
-    color: var(--secondary-text-color);
+    color: var(--white-text-color);
     opacity: 1;
 }
 

@@ -1,10 +1,14 @@
-.navigation-bar{
+.navigation-bar {
     z-index: 5;
     position: sticky;
     top: 0;
 }
 
-.account-data{
+.search-item input::placeholder {
+    color: var(--white-text-color);
+}
+
+.account-data {
     width: 25%;
 }
 
@@ -16,7 +20,7 @@
     display: none;
 }
 
-.mini-sidebar{
+.mini-sidebar {
     position: absolute;
     top: 9rem;
     right: 0;

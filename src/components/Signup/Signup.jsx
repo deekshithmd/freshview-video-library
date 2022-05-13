@@ -78,7 +78,7 @@ export const Signup = () => {
             <input
               type="email"
               name="email"
-              placeholder="freshbuy@gmail.com"
+              placeholder="user@freshview.com"
               onMouseLeave={checkEmail}
               required
             />
