@@ -1,6 +1,8 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import {
+  Navigation,
+  Footer,
   ExploreVideo,
   Liked,
   PlayList,
@@ -15,10 +17,11 @@ import {
   PlaylistVideos,
   Profile
 } from "./components";
-import { Navigation, Footer } from "./components";
+import {useTheme} from "./contexts"
 function App() {
+  const {theme}=useTheme()
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />

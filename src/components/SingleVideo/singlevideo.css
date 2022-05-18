@@ -2,26 +2,24 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-areas: "player player player player player player player suggested suggested suggested"
-        "details details details details details details details suggested suggested suggested";
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 75% 25%;
+    grid-template-areas:
+        "player suggested"
+        "details suggested";
+
     min-height: 70vh;
 }
 
 .video-container {
     grid-area: player;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
     padding: 1rem 2rem 0 2rem;
-    min-height: 45rem;
+    min-height: 43rem;
 }
 
 .video-detail {
     grid-area: details;
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0 2rem 2rem;
@@ -32,9 +30,7 @@
 }
 
 .data-actions {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
 }
 
@@ -52,12 +48,16 @@
 
 .suggested-list {
     grid-area: suggested;
-    display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
     padding: 1rem 0;
     overflow-y: scroll;
     height: auto;
+}
+
+.suggested-videos {
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .add-comment {
@@ -66,7 +66,7 @@
 }
 
 .add-comment input {
-    width: 59rem;
+    width: 80%;
 }
 
 .show-comment {
@@ -81,7 +81,7 @@
     align-items: flex-start;
 }
 
-@media screen and(max-width:480px) {
+@media screen and (max-width:480px) {
     .single-video-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -90,7 +90,47 @@
             "details"
             "suggested";
     }
-    .video-detail {
-        display: none;
+
+    .video-container {
+        min-height: 22rem;
+    }
+
+    .video-info {
+        width: 100vw;
+    }
+
+    .add-comment input {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width:820px) {
+    .single-video-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "player"
+            "details"
+            "suggested";
+    }
+
+    .video-container {
+        max-height: 30rem;
+    }
+
+    .video-info {
+        width: 100vw;
+    }
+
+    .add-comment input {
+        width: 76%;
+    }
+
+    .suggested-videos {
+        width: 100vw;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 1rem;
+        padding: 1rem;
     }
 }

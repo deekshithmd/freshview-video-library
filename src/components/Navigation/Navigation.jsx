@@ -7,7 +7,7 @@ import { Toast } from "..";
 export const Navigation = () => {
   const { isLoggedin } = useAuth();
   const { showMini, setShowMini } = useData();
-  const { theme, Toggle } = useTheme();
+  const { theme, toggle } = useTheme();
   return (
     <>
       <nav className="navigation-bar">
@@ -58,11 +58,11 @@ export const Navigation = () => {
             <span className="nav-icon-link link-style-none">
               <i
                 className={
-                  theme === "light"
+                  theme === "light-theme"
                     ? "fas fa-moon nav-icon"
                     : "fas fa-sun nav-icon"
                 }
-                onClick={() => Toggle()}
+                onClick={() => toggle()}
               ></i>
             </span>
           </li>
