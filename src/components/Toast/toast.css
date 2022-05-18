@@ -2,3 +2,8 @@
     font-size: 1.5rem;
     font-weight: 550;
 }
+
+.toast-position{
+    top: 9rem !important;
+    right:0 !important;
+}
