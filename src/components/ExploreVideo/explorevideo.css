@@ -145,22 +145,6 @@
     border-bottom: 1px solid var(--border-black);
 }
 
-@media screen and (max-width:480px) {
-    .grid-container {
-        display: grid;
-        height: 100%;
-        width: 100vw;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "content"
-            "content";
-    }
-
-    .video-card{
-        margin-bottom: 1rem;
-    }
-}
-
 @media screen and (max-width:820px) {
     .grid-container {
         display: grid;
@@ -170,6 +154,12 @@
         grid-template-areas:
             "content";
     }
+
+    .filters{
+        display: flex;
+        justify-content: flex-start;
+    }
+
     .sidebar {
         display: none;
     }

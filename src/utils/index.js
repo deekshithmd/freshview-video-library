@@ -1,3 +1,4 @@
 import { getTestData } from "./getTestData";
 import { getCredentials } from "./getCredentials";
-export { getTestData, getCredentials };
+import { setMode } from "./setMode";
+export { getTestData, getCredentials, setMode };

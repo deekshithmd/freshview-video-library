@@ -32,12 +32,9 @@
 }
 
 @media screen and (max-width:480px) {
-    .search-item {
-        display: none;
-    }
-
     .account-data {
         width: 50%;
+        padding-right: 2rem;
     }
 
     .mode {
@@ -47,16 +44,6 @@
     .brand-text {
         display: none;
     }
-
-    .burger-menu {
-        display: block;
-        margin-left: 1rem;
-    }
-
-    .page-name {
-        color: var(--white-text-color);
-    }
-
 }
 
 @media screen and (max-width:820px) {

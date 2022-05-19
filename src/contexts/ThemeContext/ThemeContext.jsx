@@ -1,4 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
+import { setMode } from "../../utils";
 
 const defaultTheme = { theme: "light-theme" };
 
@@ -9,10 +10,10 @@ const ThemeProvider = ({ children }) => {
   const toggle = () => {
     if (theme === "dark-theme") {
       setTheme("light-theme");
-      localStorage.setItem("theme", "light-theme");
+      setMode("light-theme");
     } else {
       setTheme("dark-theme");
-      localStorage.setItem("theme", "dark-theme");
+      setMode("dark-theme");
     }
   };
   useEffect(() => {

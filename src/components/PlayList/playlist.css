@@ -51,12 +51,6 @@
     padding: 0 5rem;
 }
 
-@media screen and(max-width:480px) {
-    .playlist-name{
-        display: none;
-    }
-}
-
 @media screen and(max-width:820px) {
     .playlist-name{
         display: none;

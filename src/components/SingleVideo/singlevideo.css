@@ -82,21 +82,9 @@
 }
 
 @media screen and (max-width:480px) {
-    .single-video-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "player"
-            "details"
-            "suggested";
-    }
 
     .video-container {
         min-height: 22rem;
-    }
-
-    .video-info {
-        width: 100vw;
     }
 
     .add-comment input {
