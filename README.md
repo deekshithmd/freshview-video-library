@@ -13,6 +13,10 @@
  ## About
  FreshView is a video library application which consists of agriculture activity related videos. In this library you can watch videos based on your interest by applying filter on video list.
  
+ ## Tech Stack
+   Client Side: React, Context API, React Router, FreshUI <br>
+   Server Side: Mockbee ( Mock Backend )
+ 
  ## Features
  There are different features available in different pages of site
  
@@ -47,10 +51,10 @@
     This section lists all created playlists. 
       * User can create and delete playlist here. If new playlist created then it is displayed with default thumbnail.
       * On clicking any playlist, user can see all videos added to that playlist, user also can any video from playlist and can add to watchlater.
- 6. Liked <br>
+ 6. Liked Videos <br>
       * This section displays all liked videos
       * User can remove video from liked list
- 7. Watch Later <br>
+ 7. Watch Later Videos <br>
       * This section display all videos saved to watch later.
       * User can remove any video from watchlater list
  8. History <br>
@@ -61,16 +65,19 @@
       * When user clicks on any video thumbnail, single video mode opens
       * In this mode `Like`, `Watchlater`, `Add to playlist` functionalities provided and design for displaying video details provided but functionality not added.
       * Recommended video section provided which lists videos from category of playing video.
-10. User authentication <br>
+10. Search Videos:
+      * User can search videos by typing in search bar and as of now search will happen only after clicking search button.
+11. User authentication <br>
       Following functionalities provided for user authentication
       * User Login
       * User Signp
       * User Logout
-11. User Profile.<br>
+12. User Profile.<br>
       * This section displays users profile data
-12. Loader & Alerts <br>
+13. Loader & Alerts <br>
       * Loaders displays during action processing
       * Alerts displays when processing/Action completed
+14. Lazy loading. 
 
  
 ## Installation
