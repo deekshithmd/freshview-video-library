@@ -7,14 +7,14 @@ export const Filter = () => {
     <div className="filters margin-t">
       <span
         className="chip text-chip text-bold"
-        onClick={() => getFiltered("All")}
+        onClick={() => getFiltered({ category: "All" })}
       >
         All
       </span>
       {data.categories.map((category) => (
         <span
           className="chip text-chip text-bold"
-          onClick={() => getFiltered(category.categoryName)}
+          onClick={() => getFiltered({ category: category.categoryName })}
           key={category._id}
         >
           {category.categoryName}

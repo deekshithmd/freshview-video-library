@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import { useAuth, useData, useTheme } from "../../contexts";
 import { SideBar } from "..";
 import { Toast } from "..";
+import { useState } from "react";
+import { useUserActions } from "../../hooks";
 
 export const Navigation = () => {
   const { isLoggedin } = useAuth();
   const { showMini, setShowMini } = useData();
   const { theme, toggle } = useTheme();
+  const { getFiltered } = useUserActions();
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <>
       <nav className="navigation-bar">
@@ -23,10 +28,22 @@ export const Navigation = () => {
         </section>
         <section className="search-item">
           <div className="input search-field outlined ">
-            <button className="search-icon">
+            <button
+              className="search-icon"
+              onClick={() => {
+                getFiltered({ query: searchQuery });
+                setSearchQuery("");
+              }}
+            >
               <i className="fa fa-search"></i>
             </button>
-            <input type="text" name="username" placeholder="Search here..." />
+            <input
+              type="text"
+              name="username"
+              value={searchQuery}
+              placeholder="Search here..."
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
         </section>
         <ul className="list-style-none account-data">
