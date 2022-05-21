@@ -150,7 +150,7 @@ export const PlayList = () => {
                   </div>
                 ))
               ) : (
-                <h1>No playlist created</h1>
+                <h1 className="text-center">No playlist created</h1>
               )}
             </div>
           </>

@@ -22,6 +22,7 @@ import { SaveToPlaylist } from "./ActionItems/SaveToPlaylist";
 import { WatchLaterActions } from "./ActionItems/WatchLaterActions";
 import { Filter } from "./ActionItems/Filter";
 import { Toast } from "./Toast/Toast";
+import { ErrorFallBack } from "./ErrorBoundary/ErrorBoundary";
 
 export {
   Navigation,
@@ -48,4 +49,5 @@ export {
   WatchLaterActions,
   Filter,
   Toast,
+  ErrorFallBack,
 };

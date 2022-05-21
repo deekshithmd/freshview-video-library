@@ -120,7 +120,7 @@ export const PlaylistVideos = () => {
                   </div>
                 ))
               ) : (
-                <h1>No videos added to this playlist</h1>
+                <h1 className="text-center">No videos added to this playlist</h1>
               )}
             </div>
           </>

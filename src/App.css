@@ -1,0 +1,11 @@
+.light-theme {
+    color: var(--primary-black-text-color);
+    background-color: var(--background-color-light);
+    --secondary-text-color: var(--secondary-white-text-color);
+}
+
+.dark-theme {
+    color: var(--secondary-white-text-color);
+    background-color: var(--background-color-dark);
+    --secondary-text-color: var(--primary-black-text-color);
+}

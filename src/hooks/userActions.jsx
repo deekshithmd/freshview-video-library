@@ -25,6 +25,7 @@ export const useUserActions = () => {
   const showSingleVideo = (video) => {
     setLoading(true);
     setLoadText("Loading...");
+    localStorage.setItem("singlevideo", JSON.stringify(video));
     infoToast("Entering Single Video Page");
     data.history.some((historyVideo) => historyVideo._id === video._id)
       ? null
@@ -164,13 +165,26 @@ export const useUserActions = () => {
     navigate(`/playlistvideos/${playId}`);
   };
 
-  const getFiltered = (category) => {
+  const getFiltered = (filters) => {
     setLoading(true);
     setLoadText("Filtering...");
-    const filtered =
+    let { category, query } = filters;
+
+    category = category ? category : "All";
+
+    let filtered = data.videos;
+
+    query
+      ? (filtered = data.videos.filter((v) =>
+          v.title.toLowerCase().match(query.toLowerCase())
+        ))
+      : (filtered = data.videos);
+
+    filtered =
       category === "All"
-        ? data.videos
-        : data.videos.filter((video) => video.categoryName === category);
+        ? filtered
+        : filtered.filter((video) => video.categoryName === category);
+
     dispatch({ type: "LOAD_FILTERED", payload: filtered });
     setLoading(false);
     infoToast(`Applied ${category} Filter`);

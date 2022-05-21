@@ -1,21 +1,13 @@
 import "./explorevideo.css";
-import {
-  SideBar,
-  PlaylistModal,
-  SaveToPlaylist,
-  WatchLaterActions,
-  Filter,
-  Loader,
-} from "..";
-import { useData, useAuth } from "../../contexts";
-import { useUserActions } from "../../hooks";
-import { useNavigate } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import React, { Suspense, lazy } from "react";
+import { SideBar, Filter, Loader, ErrorFallBack } from "..";
+import { useData } from "../../contexts";
+
+const VideoList = lazy(() => import("../VideoList/VideoList"));
 
 export const ExploreVideo = () => {
-  const { data, id, setId, loading, loadtext } = useData();
-  const { isLoggedin } = useAuth();
-  const { showSingleVideo } = useUserActions();
-  const navigate = useNavigate();
+  const { loading, loadtext } = useData();
 
   return (
     <div className="grid-container">
@@ -28,51 +20,20 @@ export const ExploreVideo = () => {
         ) : (
           <>
             <Filter />
-            <div className="video-list">
-              {data.filtered.map((video) => (
-                <div className="video-card" key={video._id}>
-                  <div
-                    className="video-image"
-                    onClick={() => showSingleVideo(video)}
-                  >
-                    <img
-                      src={video.videoThumbnail}
-                      alt="thumb"
-                      className="img-responsive"
-                    />
-                  </div>
-
-                  <div className="video-details text-md text-bold">
-                    <div className="video-header">
-                      <span className=" video-title text-justify">
-                        {video.title}
-                      </span>
-                      <i
-                        className="fa-solid fa-ellipsis-vertical options"
-                        onClick={() =>
-                          isLoggedin
-                            ? setId(id ? 0 : video._id)
-                            : navigate("/login")
-                        }
-                      ></i>
-                      {id === video._id && (
-                        <span className="option-show">
-                          <div className="video-options text-sm">
-                            <PlaylistModal video={video} Id={id} />
-                            <SaveToPlaylist />
-                            <WatchLaterActions video={video} />
-                          </div>
-                        </span>
-                      )}
-                    </div>
-                    <div className="video-footer text-sm">
-                      <span>{video.creator}</span>
-                      <span>{video.date}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ErrorBoundary
+              FallbackComponent={ErrorFallBack}
+              onReset={() => {
+                window.location.reload();
+              }}
+            >
+              <Suspense
+                fallback={
+                  <p className="text-lg text-bold text-center">Loading...</p>
+                }
+              >
+                <VideoList />
+              </Suspense>
+            </ErrorBoundary>
           </>
         )}
       </div>

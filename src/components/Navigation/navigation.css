@@ -26,14 +26,15 @@
     right: 0;
     height: fit-content;
     width: 30rem;
-    background-color: var(--success-background);
+    background-color: var(--light-black-background);
     z-index: 5;
     padding: 1rem;
 }
 
 @media screen and (max-width:480px) {
-    .search-item {
-        display: none;
+    .account-data {
+        width: 50%;
+        padding-right: 2rem;
     }
 
     .mode {
@@ -43,16 +44,9 @@
     .brand-text {
         display: none;
     }
-
-    .burger-menu {
-        display: block;
-        margin-right: 8rem;
-        margin-left: 2rem;
-    }
-
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:820px) {
     .search-item {
         display: none;
     }
@@ -60,4 +54,9 @@
     .burger-menu {
         display: block;
     }
+
+    .page-name {
+        color: var(--white-text-color);
+    }
+
 }

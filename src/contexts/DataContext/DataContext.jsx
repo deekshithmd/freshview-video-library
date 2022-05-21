@@ -44,6 +44,7 @@ const DataProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       setLoading(true);
+      setLoadText("Loading...");
       const vres = await getVideos();
       dispatch({ type: "LOAD_VIDEO", payload: vres.data.videos });
       dispatch({ type: "LOAD_FILTERED", payload: vres.data.videos });
@@ -73,7 +74,7 @@ const DataProvider = ({ children }) => {
           type: "LOAD_LIKED",
           payload: lres.data.likes,
         });
-  
+
         const lh = JSON.parse(localStorage.getItem("history"));
         lh &&
           lh.map(async (item) => {
@@ -84,7 +85,7 @@ const DataProvider = ({ children }) => {
           type: "LOAD_HISTORY",
           payload: hres.data.history,
         });
-        
+
         const lp = JSON.parse(localStorage.getItem("playlist"));
         lp &&
           lp.map(async (item) => {
@@ -104,6 +105,9 @@ const DataProvider = ({ children }) => {
         });
       }
 
+      setCurrentVideo(JSON.parse(localStorage.getItem("singlevideo")));
+
+      setLoadText("");
       setLoading(false);
     })();
   }, []);
