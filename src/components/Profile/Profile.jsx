@@ -1,23 +1,21 @@
 import "./profile.css";
 import { SideBar } from "../SideBar/SideBar";
-import { useAuth } from "../../contexts";
+//import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../hooks";
+import { useSelector, useDispatch } from "react-redux";
 
 export const Profile = () => {
-  const { userData, setIsLoggedin } = useAuth();
+  const { logoutUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { userData } = useAuth();
   const navigate = useNavigate();
-  const {successToast}=useToast()
+  const { successToast } = useToast();
 
   const logoutHandler = () => {
-    setIsLoggedin(false);
-    localStorage.removeItem("login");
-    localStorage.removeItem("user");
-    localStorage.removeItem("watchlater");
-    localStorage.removeItem("liked");
-    localStorage.removeItem("history");
-    localStorage.removeItem("playlist");
-    successToast("Succefully Logged Out...")
+    dispatch(logoutUser());
+
+    successToast("Succefully Logged Out...");
     navigate("/");
   };
 

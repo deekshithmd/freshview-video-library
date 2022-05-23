@@ -8,14 +8,15 @@ import {
   SaveToPlaylist,
 } from "..";
 import { useParams } from "react-router-dom";
-import { useData, useAuth } from "../../contexts";
+import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks/userActions";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const SingleVideo = () => {
   const navigate = useNavigate();
   const { videoId } = useParams();
-  const { isLoggedin } = useAuth();
+  const { isLoggedin } = useSelector((state) => state.auth);
   const { data, setPlaylistModal, currentVideo, loading, id, setId, loadtext } =
     useData();
   const {

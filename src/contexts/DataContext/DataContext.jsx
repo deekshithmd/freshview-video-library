@@ -52,56 +52,56 @@ const DataProvider = ({ children }) => {
       dispatch({ type: "LOAD_CATEGORY", payload: cres.data.categories });
 
       if (token) {
-        const lw = JSON.parse(localStorage.getItem("watchlater"));
-        lw &&
-          lw.map(async (item) => {
+        const watch = JSON.parse(localStorage.getItem("watchlater"));
+        watch &&
+          watch.map(async (item) => {
             await addWatchLater({ video: item, encodedToken: token });
           });
 
-        const wres = await getWatchLater({ encodedToken: token });
+        const watchRes = await getWatchLater({ encodedToken: token });
         dispatch({
           type: "LOAD_WATCHLATER",
-          payload: wres.data.watchlater,
+          payload: watchRes.data.watchlater,
         });
 
-        const ll = JSON.parse(localStorage.getItem("liked"));
-        ll &&
-          ll.map(async (item) => {
+        const like = JSON.parse(localStorage.getItem("liked"));
+        like &&
+          like.map(async (item) => {
             await addLikedVideo({ video: item, encodedToken: token });
           });
-        const lres = await getLikedVideos({ encodedToken: token });
+        const likeRes = await getLikedVideos({ encodedToken: token });
         dispatch({
           type: "LOAD_LIKED",
-          payload: lres.data.likes,
+          payload: likeRes.data.likes,
         });
 
-        const lh = JSON.parse(localStorage.getItem("history"));
-        lh &&
-          lh.map(async (item) => {
+        const history = JSON.parse(localStorage.getItem("history"));
+        history &&
+          history.map(async (item) => {
             await addHistory({ video: item, encodedToken: token });
           });
-        const hres = await getHistory({ encodedToken: token });
+        const historyRes = await getHistory({ encodedToken: token });
         dispatch({
           type: "LOAD_HISTORY",
-          payload: hres.data.history,
+          payload: historyRes.data.history,
         });
 
-        const lp = JSON.parse(localStorage.getItem("playlist"));
-        lp &&
-          lp.map(async (item) => {
+        const playlist = JSON.parse(localStorage.getItem("playlist"));
+        playlist &&
+          playlist.map(async (item) => {
             await addPlaylist({ title: item.title, encodedToken: token });
-            item?.videos?.map(async (v) => {
+            item?.videos?.map(async (video) => {
               await addPlaylistVideo({
-                video: v,
+                video: video,
                 playlistId: item._id,
                 encodedToken: token,
               });
             });
           });
-        const pres = await getPlaylists({ encodedToken: token });
+        const playlistRes = await getPlaylists({ encodedToken: token });
         dispatch({
           type: "LOAD_PLAYLIST",
-          payload: pres.data.playlists,
+          payload: playlistRes.data.playlists,
         });
       }
 

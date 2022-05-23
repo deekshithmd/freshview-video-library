@@ -1,11 +1,12 @@
 import { PlaylistModal, SaveToPlaylist, WatchLaterActions } from "..";
-import { useData, useAuth } from "../../contexts";
+import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function VideoList() {
+  const { isLoggedin } = useSelector((state) => state.auth);
   const { data, id, setId } = useData();
-  const { isLoggedin } = useAuth();
   const { showSingleVideo } = useUserActions();
   const navigate = useNavigate();
 
