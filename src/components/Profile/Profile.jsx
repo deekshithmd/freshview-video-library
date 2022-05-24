@@ -1,6 +1,5 @@
 import "./profile.css";
 import { SideBar } from "../SideBar/SideBar";
-//import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../hooks";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +8,6 @@ import { logoutUser } from "../../app/Slices/authSlice";
 export const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  //const { userData } = useAuth();
   const navigate = useNavigate();
   const { successToast } = useToast();
 

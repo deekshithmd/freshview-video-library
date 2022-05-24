@@ -5,7 +5,7 @@ import axios from "axios";
 
 const initialState = {
   isSignedUp: false,
-  loginError:false,
+  loginError: false,
   isLoggedIn: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token") || null,
   user: JSON.parse(localStorage.getItem("user")) || null,
@@ -45,13 +45,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logoutUser: () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("login");
-      localStorage.removeItem("watchlater");
-      localStorage.removeItem("liked");
-      localStorage.removeItem("history");
-      localStorage.removeItem("playlist");
+      localStorage.clear();
       return {
         token: null,
         user: null,
@@ -72,9 +66,9 @@ export const authSlice = createSlice({
         toast.success("Login Successful...");
     },
     [loginUser.rejected]: (state, action) => {
-      state.authStatus = "Error", 
-      state.loginError=true,
-      toast.error("Something went wrong!!!");
+      (state.authStatus = "Error"),
+        (state.loginError = true),
+        toast.error("Something went wrong!!!");
     },
     [signupUser.pending]: (state) => {
       state.authStatus = "pending";
