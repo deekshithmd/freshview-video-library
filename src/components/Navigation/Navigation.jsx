@@ -1,17 +1,20 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
-import { useAuth, useData, useTheme } from "../../contexts";
+import { useData } from "../../contexts";
 import { SideBar } from "..";
 import { Toast } from "..";
 import { useState } from "react";
 import { useUserActions } from "../../hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { toggle } from "../../app/Slices/themeSlice";
 
 export const Navigation = () => {
-  const { isLoggedin } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { showMini, setShowMini } = useData();
-  const { theme, toggle } = useTheme();
   const { getFiltered } = useUserActions();
   const [searchQuery, setSearchQuery] = useState("");
+  const dispatch = useDispatch();
+  const { theme } = useSelector((state) => state.theme);
 
   return (
     <>
@@ -47,7 +50,7 @@ export const Navigation = () => {
           </div>
         </section>
         <ul className="list-style-none account-data">
-          {!isLoggedin && (
+          {!isLoggedIn && (
             <li className="list-inline-item">
               <Link to="/login" className="btn btn-solid-primary link-btn">
                 Login
@@ -55,7 +58,7 @@ export const Navigation = () => {
             </li>
           )}
 
-          {isLoggedin && (
+          {isLoggedIn && (
             <>
               <Link to="/profile">
                 <li className="list-inline-item profile">
@@ -79,7 +82,7 @@ export const Navigation = () => {
                     ? "fas fa-moon nav-icon"
                     : "fas fa-sun nav-icon"
                 }
-                onClick={() => toggle()}
+                onClick={() => dispatch(toggle())}
               ></i>
             </span>
           </li>

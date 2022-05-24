@@ -4,21 +4,21 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { DataProvider, AuthProvider, ThemeProvider } from "./contexts";
+import { DataProvider } from "./contexts";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
+    <Provider store={store}>
       <Router>
-        <AuthProvider>
-          <DataProvider>
-            <App />
-          </DataProvider>
-        </AuthProvider>
+        <DataProvider>
+          <App />
+        </DataProvider>
       </Router>
-    </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

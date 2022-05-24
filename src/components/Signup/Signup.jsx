@@ -1,33 +1,33 @@
 import "./authentication.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "../../app/Slices/authSlice";
 
 export const Signup = () => {
+  const { isSignedUp } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordValue, setPasswordvalue] = useState();
   const [confirm, setConfirm] = useState();
 
+  useEffect(() => {
+    isSignedUp ? navigate("/login") : navigate("/signup");
+  }, [isSignedUp]);
+
   const handleSignup = async (event) => {
     try {
       event.preventDefault();
       const { firstname, lastname, email, pass } = event.target.elements;
-      console.log()
-      const response = await axios.post(`/api/auth/signup`, {
+      const data = {
         firstName: firstname.value,
         lastName: lastname.value,
         email: email.value,
         password: pass.value,
-      });
-      if (response.data.encodedToken) {
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.encodedToken)
-        );
-        navigate("/login");
-      }
+      };
+      dispatch(signupUser({ data }));
     } catch (e) {
       console.error(e);
     }

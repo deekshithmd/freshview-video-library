@@ -15,11 +15,12 @@ import {
   Signup,
   Error,
   PlaylistVideos,
-  Profile
+  Profile,
 } from "./components";
-import {useTheme} from "./contexts"
+import { useSelector } from "react-redux";
+
 function App() {
-  const {theme}=useTheme()
+  const { theme } = useSelector((state) => state.theme);
   return (
     <div className={`App ${theme}`}>
       <Navigation />
@@ -59,10 +60,10 @@ function App() {
           }
         />
         <Route path="/singlevideo/:videoId" element={<SingleVideo />} />
-        <Route path="/playlistvideos/:playId" element={<PlaylistVideos/>}/>
+        <Route path="/playlistvideos/:playId" element={<PlaylistVideos />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

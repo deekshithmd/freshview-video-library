@@ -18,7 +18,7 @@ import { useToast } from "./useToast";
 export const useUserActions = () => {
   const { data, dispatch, setCurrentVideo, setLoading, setLoadText } =
     useData();
-  const token = localStorage.getItem("login");
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { infoToast, warningToast } = useToast();
 
