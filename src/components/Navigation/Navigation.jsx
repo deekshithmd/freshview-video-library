@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../app/Slices/themeSlice";
 
 export const Navigation = () => {
-  const { isLoggedin } =useSelector(state=>state.auth)
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { showMini, setShowMini } = useData();
   const { getFiltered } = useUserActions();
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,7 +50,7 @@ export const Navigation = () => {
           </div>
         </section>
         <ul className="list-style-none account-data">
-          {!isLoggedin && (
+          {!isLoggedIn && (
             <li className="list-inline-item">
               <Link to="/login" className="btn btn-solid-primary link-btn">
                 Login
@@ -58,7 +58,7 @@ export const Navigation = () => {
             </li>
           )}
 
-          {isLoggedin && (
+          {isLoggedIn && (
             <>
               <Link to="/profile">
                 <li className="list-inline-item profile">

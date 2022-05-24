@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const initialState = {
   isSignedUp: false,
+  loginError:false,
   isLoggedIn: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token") || null,
   user: JSON.parse(localStorage.getItem("user")) || null,
@@ -66,10 +68,13 @@ export const authSlice = createSlice({
         (state.token = action.payload.encodedToken),
         (state.user = action.payload.foundUser),
         localStorage.setItem("token", state.token),
-        localStorage.setItem("user", JSON.stringify(state.user));
+        localStorage.setItem("user", JSON.stringify(state.user)),
+        toast.success("Login Successful...");
     },
     [loginUser.rejected]: (state, action) => {
-      (state.authStatus = "Error"), (state.error = action.payload);
+      state.authStatus = "Error", 
+      state.loginError=true,
+      toast.error("Something went wrong!!!");
     },
     [signupUser.pending]: (state) => {
       state.authStatus = "pending";

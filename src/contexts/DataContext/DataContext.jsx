@@ -24,7 +24,7 @@ import { DataReducer } from "../Reducers/DataReducer";
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
-  const token = localStorage.getItem("login");
+  const token = localStorage.getItem("token");
   const [id, setId] = useState(0);
   const [playlistModal, setPlaylistModal] = useState(false);
   const [currentVideo, setCurrentVideo] = useState();

@@ -1,3 +1,3 @@
 export const getTestData = () => {
-  return { email: "adarshbalika@gmail.com", password: "adarshBalika123" };
+  return { email: "deekshith@gmail.com", password: "deekshith123" };
 };

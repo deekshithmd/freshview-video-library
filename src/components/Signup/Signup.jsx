@@ -1,8 +1,8 @@
 import "./authentication.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "../../app/Slices/authSlice";
 
 export const Signup = () => {
   const { isSignedUp } = useSelector((state) => state.auth);
@@ -24,24 +24,10 @@ export const Signup = () => {
       const data = {
         firstName: firstname.value,
         lastName: lastname.value,
-        username: username.value,
         email: email.value,
         password: pass.value,
       };
       dispatch(signupUser({ data }));
-      // const response = await axios.post(`/api/auth/signup`, {
-      //   firstName: firstname.value,
-      //   lastName: lastname.value,
-      //   email: email.value,
-      //   password: pass.value,
-      // });
-      // if (response.data.encodedToken) {
-      //   localStorage.setItem(
-      //     "token",
-      //     JSON.stringify(response.data.encodedToken)
-      //   );
-      //   navigate("/login");
-      // }
     } catch (e) {
       console.error(e);
     }

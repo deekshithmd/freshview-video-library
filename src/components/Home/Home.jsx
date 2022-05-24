@@ -2,13 +2,15 @@ import "./home.css";
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useUserActions } from "../../hooks";
 import { PlaylistModal, SaveToPlaylist, WatchLaterActions, Loader } from "..";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { data, id, setId, loading, loadtext } = useData();
-  const { showSingleVideo } = useUserActions();
+  const { showSingleVideo, getFiltered } = useUserActions();
   let i = 0;
 
   return (
@@ -57,7 +59,9 @@ export const Home = () => {
                   >
                     <div
                       className="category-card"
-                      onClick={() => getFiltered(category.categoryName)}
+                      onClick={() =>
+                        getFiltered({ category: category.categoryName })
+                      }
                     >
                       <div className="category-video-image">
                         <img
@@ -103,7 +107,11 @@ export const Home = () => {
                         </span>
                         <i
                           className="fa-solid fa-ellipsis-vertical options"
-                          onClick={() => setId(id ? 0 : video._id)}
+                          onClick={() =>
+                            isLoggedIn
+                              ? setId(id ? 0 : video._id)
+                              : navigate("/login")
+                          }
                         ></i>
                         {id === video._id && (
                           <span className="option-show">

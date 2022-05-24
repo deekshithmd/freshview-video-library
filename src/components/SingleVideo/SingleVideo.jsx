@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 export const SingleVideo = () => {
   const navigate = useNavigate();
   const { videoId } = useParams();
-  const { isLoggedin } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { data, setPlaylistModal, currentVideo, loading, id, setId, loadtext } =
     useData();
   const {
@@ -180,7 +180,7 @@ export const SingleVideo = () => {
                             <i
                               className="fa-solid fa-ellipsis-vertical options"
                               onClick={() =>
-                                isLoggedin
+                                isLoggedIn
                                   ? setId(id ? 0 : video._id)
                                   : navigate("/login")
                               }

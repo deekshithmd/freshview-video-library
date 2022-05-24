@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function VideoList() {
-  const { isLoggedin } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { data, id, setId } = useData();
   const { showSingleVideo } = useUserActions();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function VideoList() {
               <i
                 className="fa-solid fa-ellipsis-vertical options"
                 onClick={() =>
-                  isLoggedin ? setId(id ? 0 : video._id) : navigate("/login")
+                  isLoggedIn ? setId(id ? 0 : video._id) : navigate("/login")
                 }
               ></i>
               {id === video._id && (
