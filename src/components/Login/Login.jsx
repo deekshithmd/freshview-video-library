@@ -1,17 +1,17 @@
 import "../Signup/authentication.css";
-import axios from "axios";
 import { getTestData, getCredentials } from "../../utils";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import { loginUser } from "../../app/Slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useToast } from "../../hooks";
 
 export const Login = () => {
   const { isLoggedIn,loginError } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  console.log("login",location)
 
   useEffect(() => {
     isLoggedIn && navigate(location?.state?.from?.pathname || "/");

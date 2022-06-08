@@ -1,12 +1,41 @@
 import { useUserActions } from "../../hooks";
 import { useData } from "../../contexts";
+import { useSelector } from "react-redux";
 import { useState } from "react";
+import { deletePlaylistVideo, getPlaylists } from "../../services";
 
 export const PlaylistModal = ({ video }) => {
+  const { token } = useSelector((state) => state.auth);
   const { addPlaylistVideos, addNewPlaylist } = useUserActions();
   const [playlistName, setPlaylistName] = useState("");
   const [createPlaylist, setCreatePlaylist] = useState(false);
-  const { data, setId, playlistModal, setPlaylistModal } = useData();
+  const {
+    data,
+    dispatch,
+    setId,
+    playlistModal,
+    setPlaylistModal,
+    setLoadText,
+    setLoading,
+  } = useData();
+
+  const deleteFromPlaylist = async (video, playId) => {
+    setLoading(true);
+    setLoadText("Removing...");
+    const playlistdeleteResponse = await deletePlaylistVideo({
+      playlistId: playId,
+      videoId: video._id,
+      encodedToken: token,
+    });
+
+    const playlistDataResponse = await getPlaylists({ encodedToken: token });
+    dispatch({
+      type: "LOAD_PLAYLIST",
+      payload: playlistDataResponse.data.playlists,
+    });
+    setLoading(false);
+  };
+
   return (
     <>
       {playlistModal && (
@@ -22,22 +51,29 @@ export const PlaylistModal = ({ video }) => {
                 }}
               ></i>
             </section>
-            <section className="modal-content text-sm">
+            <section className="modal-content text-md">
               {data.playlist.length > 0 ? (
                 data.playlist.map((playlist) => (
                   <div key={playlist._id}>
-                    <div
-                      className="option"
-                      onClick={() =>
-                        playlist.videos.some((v) => v._id === video._id)
-                          ? window.alert("already present")
-                          : (addPlaylistVideos(video, playlist._id),
-                            setPlaylistModal(false),
-                            setId(0))
-                      }
-                    >
+                    <label>
+                      <input
+                        type="checkbox"
+                        className="margin"
+                        checked={playlist.videos.some(
+                          (v) => v._id === video._id
+                        )}
+                        onChange={() => {
+                          playlist.videos.some((v) => v._id === video._id)
+                            ? (deleteFromPlaylist(video, playlist._id),
+                              setPlaylistModal(false),
+                              setId(0))
+                            : (addPlaylistVideos(video, playlist._id),
+                              setPlaylistModal(false),
+                              setId(0));
+                        }}
+                      />
                       {playlist.title}
-                    </div>
+                    </label>
                   </div>
                 ))
               ) : (

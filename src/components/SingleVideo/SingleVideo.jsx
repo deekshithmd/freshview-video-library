@@ -70,9 +70,6 @@ export const SingleVideo = () => {
                             ></i>
                             {parseInt(video.likes / 1000)}K
                           </span>
-                          <span className="action-item">
-                            <i className="fa-solid fa-share margin-r"></i>Share
-                          </span>
                           <PlaylistModal video={video} Id={video._id} />
                           <span
                             className="action-item"
@@ -110,7 +107,8 @@ export const SingleVideo = () => {
                       <p className="text-md text-left text-justify">
                         {video.description}
                       </p>
-                      <span className="text-md margin-b text-bold">
+                      {/* Will be adding comment functionality in the future development */}
+                      {/* <span className="text-md margin-b text-bold">
                         Comments
                       </span>
                       <div className="add-comment">
@@ -129,8 +127,8 @@ export const SingleVideo = () => {
                         <button className="btn btn-solid-primary margin-l">
                           Comment
                         </button>
-                      </div>
-                      <div className="show-comment">
+                      </div> */}
+                      {/* <div className="show-comment">
                         <div className="user-avatar margin-r">
                           <div
                             className="avatar avatar-text-xs avatar-text img-round text-md text-bold"
@@ -150,7 +148,7 @@ export const SingleVideo = () => {
                             techniques required to get succcess in this crop
                           </span>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   )
                 );

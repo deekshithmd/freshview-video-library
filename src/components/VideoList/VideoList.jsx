@@ -1,7 +1,7 @@
 import { PlaylistModal, SaveToPlaylist, WatchLaterActions } from "..";
 import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function VideoList() {
@@ -9,6 +9,7 @@ export default function VideoList() {
   const { data, id, setId } = useData();
   const { showSingleVideo } = useUserActions();
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="video-list">
@@ -28,7 +29,9 @@ export default function VideoList() {
               <i
                 className="fa-solid fa-ellipsis-vertical options"
                 onClick={() =>
-                  isLoggedIn ? setId(id ? 0 : video._id) : navigate("/login")
+                  isLoggedIn
+                    ? setId(id ? 0 : video._id)
+                    : navigate("/login", { state: { from: location } })
                 }
               ></i>
               {id === video._id && (

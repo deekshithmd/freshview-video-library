@@ -26,7 +26,6 @@ export const useUserActions = () => {
     setLoading(true);
     setLoadText("Loading...");
     localStorage.setItem("singlevideo", JSON.stringify(video));
-    infoToast("Entering Single Video Page");
     data.history.some((historyVideo) => historyVideo._id === video._id)
       ? null
       : addHistoryVideo(video);
@@ -56,7 +55,6 @@ export const useUserActions = () => {
       encodedToken: token,
     });
     dispatch({ type: "LOAD_HISTORY", payload: historyResponse.data.history });
-    infoToast("Added to History");
   };
 
   const addPlaylistVideos = async (video, playlistId) => {
@@ -153,12 +151,9 @@ export const useUserActions = () => {
   };
 
   const addLike = async (video) => {
-    setLoading(true);
     setLoadText("Adding...");
     const likeRes = await addLikedVideo({ video: video, encodedToken: token });
     dispatch({ type: "LOAD_LIKED", payload: likeRes.data.likes });
-    setLoading(false);
-    infoToast("Added to Liked Videos");
   };
 
   const showPlaylistVideos = (playId) => {
@@ -187,7 +182,6 @@ export const useUserActions = () => {
 
     dispatch({ type: "LOAD_FILTERED", payload: filtered });
     setLoading(false);
-    infoToast(`Applied ${category} Filter`);
   };
 
   return {

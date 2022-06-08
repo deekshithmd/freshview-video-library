@@ -1,9 +1,8 @@
 import "./navigation.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useData } from "../../contexts";
 import { SideBar } from "..";
 import { Toast } from "..";
-import { useState } from "react";
 import { useUserActions } from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../app/Slices/themeSlice";
@@ -12,9 +11,22 @@ export const Navigation = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { showMini, setShowMini } = useData();
   const { getFiltered } = useUserActions();
-  const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
+
+  let debounce = (callback, delay) => {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(
+        () => callback.call(this, { query: arguments[0] }),
+        delay
+      );
+    };
+  };
+
+  let searchVideo = debounce((searchQuery) => getFiltered(searchQuery), 400);
 
   return (
     <>
@@ -29,26 +41,21 @@ export const Navigation = () => {
           </Link>
           <span className="brand-text">FreshView</span>
         </section>
-        <section className="search-item">
-          <div className="input search-field outlined ">
-            <button
-              className="search-icon"
-              onClick={() => {
-                getFiltered({ query: searchQuery });
-                setSearchQuery("");
-              }}
-            >
-              <i className="fa fa-search"></i>
-            </button>
-            <input
-              type="text"
-              name="username"
-              value={searchQuery}
-              placeholder="Search here..."
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </section>
+        {location.pathname === "/explore" && (
+          <section className="search-item">
+            <div className="input search-field outlined ">
+              <button className="search-icon">
+                <i className="fa fa-search"></i>
+              </button>
+              <input
+                type="text"
+                name="username"
+                placeholder="Search here..."
+                onChange={(e) => searchVideo(e.target.value)}
+              />
+            </div>
+          </section>
+        )}
         <ul className="list-style-none account-data">
           {!isLoggedIn && (
             <li className="list-inline-item">

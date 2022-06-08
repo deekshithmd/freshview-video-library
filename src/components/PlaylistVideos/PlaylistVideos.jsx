@@ -14,7 +14,7 @@ export const PlaylistVideos = () => {
   const [playlistVideos, setPlaylistVideos] = useState([]);
   const { dispatch, loading, setLoading, id, setId, loadtext, setLoadText } =
     useData();
-  const token = localStorage.getItem("login");
+  const token = localStorage.getItem("token");
   const { deletePlayList, showSingleVideo } = useUserActions();
   const [playlistName, setPlaylistName] = useState("");
 
@@ -120,7 +120,7 @@ export const PlaylistVideos = () => {
                   </div>
                 ))
               ) : (
-                <h1 className="text-center">No videos added to this playlist</h1>
+                <h1 className="text-center">No video added to this playlist</h1>
               )}
             </div>
           </>
