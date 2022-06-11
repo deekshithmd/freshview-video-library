@@ -24,7 +24,6 @@ export const PlayList = () => {
           <>
             <div className="section-header">
               <h2 className="playlist-name">Playlists</h2>
-
               {playlistModal && (
                 <div className="modal-container">
                   <div className="modal">
@@ -38,8 +37,11 @@ export const PlayList = () => {
                     <section className="modal-content text-sm">
                       {data.playlist.length > 0 ? (
                         data.playlist.map((playlist) => (
-                          <div key={playlist._id} className="option">
-                            {playlist.title}
+                          <div key={playlist._id} className="text-md">
+                            <label>
+                              <input type="checkbox" className="margin" />
+                              {playlist.title}
+                            </label>
                           </div>
                         ))
                       ) : (
@@ -109,11 +111,13 @@ export const PlayList = () => {
                               {playlist.videos.length}
                             </span>
                           </div>
-                          <div className="delete flex">
+                          <div
+                            className="delete flex"
+                            onClick={() => deletePlayList(playlist._id)}
+                          >
                             <img
                               src="https://www.svgrepo.com/show/352601/trash.svg"
-                              alt=""
-                              onClick={() => deletePlayList(playlist._id)}
+                              alt="delete"
                             />
                           </div>
                         </>

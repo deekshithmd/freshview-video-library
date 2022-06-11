@@ -11,8 +11,6 @@ export const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log("login",location)
-
   useEffect(() => {
     isLoggedIn && navigate(location?.state?.from?.pathname || "/");
   }, [isLoggedIn]);
